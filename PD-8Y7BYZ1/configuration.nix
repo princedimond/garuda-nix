@@ -2,13 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -17,7 +22,8 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices."luks-3c5d1ce1-a153-445a-8875-aa0eaca3ed35".device = "/dev/disk/by-uuid/3c5d1ce1-a153-445a-8875-aa0eaca3ed35";
+  boot.initrd.luks.devices."luks-3c5d1ce1-a153-445a-8875-aa0eaca3ed35".device =
+    "/dev/disk/by-uuid/3c5d1ce1-a153-445a-8875-aa0eaca3ed35";
   networking.hostName = "PD-8Y7BYZ1"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -27,12 +33,12 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  
+
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
- 
+
   # Enable Flakes & Cleanup
-   nix = {
+  nix = {
     settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -48,19 +54,22 @@
       options = "--delete-older-than 7d";
     };
   };
-  
+
   # Enable Garuda Desktop
   garuda = {
     dr460nized.enable = true;
-   # gaming.enable = true;
-   # chromium = true;
-   # desktops.enable = true;
-   # performance = true;
+    # gaming.enable = true;
+    # chromium = true;
+    # desktops.enable = true;
+    # performance = true;
     performance-tweaks = {
       cachyos-kernel = true;
       enable = true;
-     };
-   };
+    };
+  };
+
+  programs.neovim.viAlias = true;
+  programs.neovim.vimAlias = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -90,7 +99,10 @@
   users.users.princedimond = {
     isNormalUser = true;
     description = "princedimond";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       thunderbird
       thunderbolt
@@ -106,12 +118,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
     curl
     pciutils
-     ferdium
+    ferdium
     protonvpn-gui
     protonvpn-cli
     gitkraken
@@ -157,18 +169,18 @@
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
+    inputs.nixvim.packages.x86_64-linux.default
   ];
 
-
-    systemd.services.flatpak-repo = {
+  systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       flatpak install -y microsoft-edge
     '';
   };
-  
-    services.flatpak.packages = [
+
+  services.flatpak.packages = [
     "com.microsoft.Edge"
   ];
 

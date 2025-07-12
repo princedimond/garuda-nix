@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
+    nixvim.url = "github:dc-tec/nixvim";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     plasma-manager = {
@@ -23,7 +24,8 @@
     inputs@{ 
       self, 
       nixpkgs, 
-      garuda, 
+      garuda,
+      nixvim,
       home-manager, 
       plasma-manager,
       zen-browser, 
@@ -34,6 +36,9 @@
     nixosConfigurations = {
       PD-8Y7BYZ1 = garuda.lib.garudaSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
           ./configuration.nix
