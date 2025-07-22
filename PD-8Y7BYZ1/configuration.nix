@@ -133,7 +133,6 @@
     bitwarden
     expressvpn
     onlyoffice-bin
-    gitkraken
     direnv
     #vlc
     deluge
