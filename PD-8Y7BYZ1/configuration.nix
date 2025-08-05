@@ -171,6 +171,10 @@
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "libsoup-2.74.3"
+  ];
+
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
