@@ -171,6 +171,7 @@
     gthumb
     discord
     flatpak
+    teamviewer
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
@@ -210,6 +211,7 @@
   services.expressvpn.enable = true;
   services.tailscale.enable = true;
   services.printing.enable = true; # enable CUPS to print documents
+  services.teamviewer.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
