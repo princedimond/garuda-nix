@@ -147,7 +147,6 @@
     meld
     #node2nix
     nixd
-    #helix
     helix-gpt
     nh
     apacheHttpd
@@ -155,7 +154,6 @@
     thunderbolt
     affine
     gthumb
-    # kdePackages.gwenview
     evil-helix
     xfce.thunar
     hplipWithPlugin
@@ -168,7 +166,13 @@
     flatpak
     teamviewer
     brave
+    spotify
     tk
+    kdePackages.kolourpaint
+    zoom-us
+    onedrivegui
+    anytype
+    anytype-heart
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
