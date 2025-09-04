@@ -173,6 +173,16 @@
     discord
     flatpak
     teamviewer
+    caligula
+    keybase
+    keybase-gui
+    kbfs
+    libimobiledevice
+    libimobiledevice-glue
+    usbmuxd2
+    ifuse
+    anytype
+    anytype-heart
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
@@ -213,6 +223,8 @@
   services.tailscale.enable = true;
   services.printing.enable = true; # enable CUPS to print documents
   services.teamviewer.enable = true;
+  services.keybase.enable = true;
+  services.usbmuxd.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
