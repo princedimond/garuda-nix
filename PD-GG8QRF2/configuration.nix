@@ -56,6 +56,10 @@
     };
   };
 
+  # Enable Lomiri Deskop as an option
+  #services.desktopManager.lomiri.enable = true;
+  #services.displayManager.defaultSession = "plasma";
+
   # Enable Garuda Desktop
   garuda = {
     dr460nized.enable = true;
@@ -157,6 +161,7 @@
     #helix
     helix-gpt
     nh
+    ncdu
     apacheHttpd
     tailscale
     thunderbolt
@@ -177,9 +182,11 @@
     fprintd
     omnissa-horizon-client
     kdePackages.kmail
+    kdePackages.kmail-account-wizard
     anytype
     anytype-heart
     onefetch
+    logseq
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
