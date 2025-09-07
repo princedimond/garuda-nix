@@ -183,6 +183,7 @@
     ifuse
     anytype
     anytype-heart
+    onefetch
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
