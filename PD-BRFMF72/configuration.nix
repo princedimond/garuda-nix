@@ -73,7 +73,7 @@
   programs.neovim.vimAlias = true;
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Chicago";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -173,6 +173,17 @@
     discord
     flatpak
     teamviewer
+    caligula
+    keybase
+    keybase-gui
+    kbfs
+    libimobiledevice
+    libimobiledevice-glue
+    usbmuxd2
+    ifuse
+    anytype
+    anytype-heart
+    onefetch
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
@@ -213,6 +224,8 @@
   services.tailscale.enable = true;
   services.printing.enable = true; # enable CUPS to print documents
   services.teamviewer.enable = true;
+  services.keybase.enable = true;
+  services.usbmuxd.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

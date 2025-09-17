@@ -22,10 +22,10 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices."luks-98373193-bf73-4cca-ad02-b05996a50906".device =
-    "/dev/disk/by-uuid/98373193-bf73-4cca-ad02-b05996a50906";
+  #  boot.initrd.luks.devices."luks-f166bf67-4322-4026-976e-43326f6a571d".device =
+  #    "/dev/disk/by-uuid/f166bf67-4322-4026-976e-43326f6a571d";
 
-  networking.hostName = "PD-5CD8472PP3"; # Define your hostname.
+  networking.hostName = "PD-GG8QRF2"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -55,6 +55,10 @@
       options = "--delete-older-than 7d";
     };
   };
+
+  # Enable Lomiri Deskop as an option
+  #services.desktopManager.lomiri.enable = true;
+  #services.displayManager.defaultSession = "plasma";
 
   # Enable Garuda Desktop
   garuda = {
@@ -113,8 +117,14 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Nix packages config unfree/allowed insecure packages
+  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnFree = true;
+    permittedInsecurePackages = [
+      "libsoup-2.74.3"
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -136,6 +146,7 @@
     onlyoffice-bin
     direnv
     #vlc
+    microsoft-edge
     deluge
     htop
     glances
@@ -147,13 +158,16 @@
     meld
     #node2nix
     nixd
+    #helix
     helix-gpt
     nh
+    ncdu
     apacheHttpd
     tailscale
     thunderbolt
     affine
     gthumb
+    # kdePackages.gwenview
     evil-helix
     xfce.thunar
     hplipWithPlugin
@@ -165,34 +179,39 @@
     discord
     flatpak
     teamviewer
-    brave
-    spotify
-    tk
-    kdePackages.kolourpaint
-    zoom-us
-    onedrivegui
+    fprintd
+    omnissa-horizon-client
+    kdePackages.kmail
+    kdePackages.kmail-account-wizard
     anytype
     anytype-heart
+    onefetch
+    logseq
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "libsoup-2.74.3"
-  ];
+  # Git Options
+  programs.git = {
+    enable = true;
+    # userName = "princedimond";
+    # userEmail = "princedimond@gmail.com";
+  };
+
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      flatpak install -y microsoft-edge
+      # flatpak install -y microsoft-edge
     '';
   };
-
-  services.flatpak.packages = [
-    "com.microsoft.Edge"
-  ];
+  /*
+    services.flatpak.packages = [
+      "com.microsoft.Edge"
+    ];
+  */
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -209,6 +228,12 @@
   services.tailscale.enable = true;
   services.printing.enable = true; # enable CUPS to print documents
   services.teamviewer.enable = true;
+
+  # Fingerprint Reader Config
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  #services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090; # (If the vfs0090 Driver does not work, use the following driver)
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix; # (On my device it only worked with this driver)
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
