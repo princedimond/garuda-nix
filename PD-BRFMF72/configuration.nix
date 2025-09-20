@@ -138,6 +138,7 @@
     btop
     vscode
     bitwarden
+    bitwarden-cli
     expressvpn
     onlyoffice-bin
     direnv
@@ -184,6 +185,12 @@
     anytype
     anytype-heart
     onefetch
+    warp-terminal
+    podman
+    podman-desktop
+    podman-tui
+    zed-editor-fhs
+    nil
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
@@ -226,6 +233,17 @@
   services.teamviewer.enable = true;
   services.keybase.enable = true;
   services.usbmuxd.enable = true;
+
+  # Podman Specific Services:
+  virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
+  virtualisation.podman.dockerSocket.enable = true;
+  virtualisation.podman.networkSocket.enable = true;
+  virtualisation.podman.networkSocket.tls.key = "/home/princedimond/Documents/PD-BRFMF72/server.key";
+  virtualisation.podman.networkSocket.tls.cert = "/home/princedimond/Documents/PD-BRFMF72/server.crt";
+  virtualisation.podman.networkSocket.tls.cacert =
+    "/home/princedimond/Documents/PD-BRFMF72/server.csr";
+  virtualisation.podman.networkSocket.server = "ghostunnel";
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
