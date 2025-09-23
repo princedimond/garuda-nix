@@ -21,8 +21,9 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
-  boot.initrd.luks.devices."luks-5cbbfd51-d1d4-4eaa-af02-223436145bf4".device = "/dev/disk/by-uuid/5cbbfd51-d1d4-4eaa-af02-223436145bf4";
+
+  boot.initrd.luks.devices."luks-5cbbfd51-d1d4-4eaa-af02-223436145bf4".device =
+    "/dev/disk/by-uuid/5cbbfd51-d1d4-4eaa-af02-223436145bf4";
 
   networking.hostName = "PD-19KDH72"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -172,6 +173,10 @@
     discord
     flatpak
     teamviewer
+    warp-terminal
+    zed-editor
+    nil
+    lunacy
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.zen-browser.packages.x86_64-linux.specific
     inputs.zen-browser.packages.x86_64-linux.generic
