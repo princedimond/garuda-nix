@@ -55,17 +55,10 @@
           };
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
+            home-manager.nixosModules.home-manager
             ./configuration.nix
           ];
         };
       };
-      /*
-          homeConfigurations = {
-            PD-5CG9235MQ9 = home-manager.lib.homeManagerConfiguration {
-              modules = [ ./home.nix ];
-              inherit pkgs;
-            }
-          };
-      */
     };
 }

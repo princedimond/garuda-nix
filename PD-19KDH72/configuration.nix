@@ -104,13 +104,15 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      thunderbird
-      thunderbolt
-      wine
-      wine64
-      wine-wayland
-    ];
+    packages = 
+      let 
+        systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
+      in
+      systemPkgs.wine ++
+      (with pkgs; [
+        thunderbird
+        thunderbolt
+      ]);
   };
 
   # Nix packages config unfree/allowed insecure packages
@@ -122,66 +124,32 @@
     ];
   };
 
+  # Import organized package lists
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    curl
-    pciutils
-    ferdium
-    protonvpn-gui
-    protonvpn-cli
-    gitkraken
-    github-desktop
-    btop
-    vscode
-    bitwarden
-    expressvpn
-    onlyoffice-bin
-    direnv
-    #vlc
-    deluge
-    htop
-    glances
-    #pro-office-calculator
-    mission-center
-    pkgs.gnome-disk-utility
-    orca-slicer
-    fastfetch
-    meld
-    #node2nix
-    nixd
-    #helix
-    helix-gpt
-    nh
-    apacheHttpd
-    tailscale
-    thunderbolt
-    affine
-    gthumb
-    # kdePackages.gwenview
-    evil-helix
-    xfce.thunar
-    hplipWithPlugin
-    hplip
-    system-config-printer
-    imagemagick
-    graphicsmagick-imagemagick-compat
-    gthumb
-    discord
-    flatpak
-    teamviewer
-    warp-terminal
-    zed-editor
-    nil
-    lunacy
-    inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
-    inputs.nixvim.packages.x86_64-linux.default
-  ];
+  environment.systemPackages = 
+    let 
+      systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
+      devPkgs = import (./packages/development.nix) { inherit pkgs; };
+    in
+    # Flatten all package categories into a single list
+    systemPkgs.core ++
+    systemPkgs.development ++
+    systemPkgs.productivity ++
+    systemPkgs.networking ++
+    systemPkgs.media ++
+    systemPkgs.utilities ++
+    systemPkgs.printing ++
+    systemPkgs.browsers ++
+    systemPkgs.extras ++
+    # Add development packages (uncomment categories you want to enable)
+    # devPkgs.languages ++
+    # devPkgs.build ++
+    # devPkgs.databases ++
+    # devPkgs.containers ++
+    [];
+    
+    # Note: Wine packages are handled separately in users.users.princedimond.packages
 
   # Git Options
   programs.git = {
@@ -227,9 +195,16 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Home Manager configuration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = false;
+    users.princedimond = import ./home.nix;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
