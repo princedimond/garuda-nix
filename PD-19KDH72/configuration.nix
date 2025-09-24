@@ -22,10 +22,10 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  #  boot.initrd.luks.devices."luks-f166bf67-4322-4026-976e-43326f6a571d".device =
-  #    "/dev/disk/by-uuid/f166bf67-4322-4026-976e-43326f6a571d";
+  boot.initrd.luks.devices."luks-5cbbfd51-d1d4-4eaa-af02-223436145bf4".device =
+    "/dev/disk/by-uuid/5cbbfd51-d1d4-4eaa-af02-223436145bf4";
 
-  networking.hostName = "PD-BRFMF72"; # Define your hostname.
+  networking.hostName = "PD-19KDH72"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -73,7 +73,7 @@
   programs.neovim.vimAlias = true;
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "America/New_York";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -104,13 +104,15 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      thunderbird
-      thunderbolt
-      wine
-      wine64
-      wine-wayland
-    ];
+    packages = 
+      let 
+        systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
+      in
+      systemPkgs.wine ++
+      (with pkgs; [
+        thunderbird
+        thunderbolt
+      ]);
   };
 
   # Nix packages config unfree/allowed insecure packages
@@ -122,80 +124,32 @@
     ];
   };
 
+  # Import organized package lists
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    curl
-    pciutils
-    ferdium
-    protonvpn-gui
-    protonvpn-cli
-    gitkraken
-    github-desktop
-    btop
-    vscode
-    bitwarden
-    bitwarden-cli
-    expressvpn
-    onlyoffice-bin
-    direnv
-    #vlc
-    deluge
-    htop
-    glances
-    #pro-office-calculator
-    mission-center
-    pkgs.gnome-disk-utility
-    orca-slicer
-    fastfetch
-    meld
-    #node2nix
-    nixd
-    #helix
-    helix-gpt
-    nh
-    apacheHttpd
-    tailscale
-    thunderbolt
-    affine
-    gthumb
-    # kdePackages.gwenview
-    evil-helix
-    xfce.thunar
-    hplipWithPlugin
-    hplip
-    system-config-printer
-    imagemagick
-    graphicsmagick-imagemagick-compat
-    gthumb
-    discord
-    flatpak
-    teamviewer
-    caligula
-    keybase
-    keybase-gui
-    kbfs
-    libimobiledevice
-    libimobiledevice-glue
-    usbmuxd2
-    ifuse
-    anytype
-    anytype-heart
-    onefetch
-    warp-terminal
-    podman
-    podman-desktop
-    podman-tui
-    zed-editor-fhs
-    nil
-    inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
-    inputs.nixvim.packages.x86_64-linux.default
-  ];
+  environment.systemPackages = 
+    let 
+      systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
+      devPkgs = import (./packages/development.nix) { inherit pkgs; };
+    in
+    # Flatten all package categories into a single list
+    systemPkgs.core ++
+    systemPkgs.development ++
+    systemPkgs.productivity ++
+    systemPkgs.networking ++
+    systemPkgs.media ++
+    systemPkgs.utilities ++
+    systemPkgs.printing ++
+    systemPkgs.browsers ++
+    systemPkgs.extras ++
+    # Add development packages (uncomment categories you want to enable)
+    # devPkgs.languages ++
+    # devPkgs.build ++
+    # devPkgs.databases ++
+    # devPkgs.containers ++
+    [];
+    
+    # Note: Wine packages are handled separately in users.users.princedimond.packages
 
   # Git Options
   programs.git = {
@@ -231,19 +185,6 @@
   services.tailscale.enable = true;
   services.printing.enable = true; # enable CUPS to print documents
   services.teamviewer.enable = true;
-  services.keybase.enable = true;
-  services.usbmuxd.enable = true;
-
-  # Podman Specific Services:
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  virtualisation.podman.dockerSocket.enable = true;
-  virtualisation.podman.networkSocket.enable = true;
-  virtualisation.podman.networkSocket.tls.key = "/home/princedimond/Documents/PD-BRFMF72/server.key";
-  virtualisation.podman.networkSocket.tls.cert = "/home/princedimond/Documents/PD-BRFMF72/server.crt";
-  virtualisation.podman.networkSocket.tls.cacert =
-    "/home/princedimond/Documents/PD-BRFMF72/server.csr";
-  virtualisation.podman.networkSocket.server = "ghostunnel";
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -254,9 +195,16 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Home Manager configuration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = false;
+    users.princedimond = import ./home.nix;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
