@@ -73,7 +73,7 @@
   programs.neovim.vimAlias = true;
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Chicago";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -104,12 +104,12 @@
       "networkmanager"
       "wheel"
     ];
-    packages = 
-      let 
+    packages =
+      let
         systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
       in
-      systemPkgs.wine ++
-      (with pkgs; [
+      systemPkgs.wine
+      ++ (with pkgs; [
         thunderbird
         thunderbolt
       ]);
@@ -127,29 +127,30 @@
   # Import organized package lists
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = 
-    let 
+  environment.systemPackages =
+    let
       systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
       devPkgs = import (./packages/development.nix) { inherit pkgs; };
     in
     # Flatten all package categories into a single list
-    systemPkgs.core ++
-    systemPkgs.development ++
-    systemPkgs.productivity ++
-    systemPkgs.networking ++
-    systemPkgs.media ++
-    systemPkgs.utilities ++
-    systemPkgs.printing ++
-    systemPkgs.browsers ++
-    systemPkgs.extras ++
-    # Add development packages (uncomment categories you want to enable)
-    # devPkgs.languages ++
-    # devPkgs.build ++
-    # devPkgs.databases ++
-    # devPkgs.containers ++
-    [];
-    
-    # Note: Wine packages are handled separately in users.users.princedimond.packages
+    systemPkgs.core
+    ++ systemPkgs.development
+    ++ systemPkgs.productivity
+    ++ systemPkgs.networking
+    ++ systemPkgs.media
+    ++ systemPkgs.utilities
+    ++ systemPkgs.printing
+    ++ systemPkgs.browsers
+    ++ systemPkgs.extras
+    ++
+      # Add development packages (uncomment categories you want to enable)
+      # devPkgs.languages ++
+      # devPkgs.build ++
+      # devPkgs.databases ++
+      # devPkgs.containers ++
+      [ ];
+
+  # Note: Wine packages are handled separately in users.users.princedimond.packages
 
   # Git Options
   programs.git = {

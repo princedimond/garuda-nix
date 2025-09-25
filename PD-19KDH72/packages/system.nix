@@ -27,6 +27,7 @@
     helix-gpt
     evil-helix
     nh
+    onefetch
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -37,6 +38,9 @@
     thunderbird
     onlyoffice-bin
     affine
+    anytype
+    logseq
+    evolution
   ];
 
   # VPN and networking
