@@ -13,6 +13,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # Services configuration
+    ./services.nix
   ];
 
   # Bootloader.
@@ -90,11 +92,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.princedimond = {
@@ -159,17 +156,7 @@
     # userEmail = "princedimond@gmail.com";
   };
 
-  systemd.services.flatpak-repo = {
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      flatpak install -y microsoft-edge
-    '';
-  };
 
-  services.flatpak.packages = [
-    "com.microsoft.Edge"
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -179,16 +166,7 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-  services.flatpak.enable = true;
-  services.hardware.bolt.enable = true;
-  services.expressvpn.enable = true;
-  services.tailscale.enable = true;
-  services.printing.enable = true; # enable CUPS to print documents
-  services.teamviewer.enable = true;
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Services are now configured in services.nix
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
