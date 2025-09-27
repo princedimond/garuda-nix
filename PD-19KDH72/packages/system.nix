@@ -49,6 +49,7 @@
     protonvpn-cli
     expressvpn
     tailscale
+    barrier
   ];
 
   # Media and graphics

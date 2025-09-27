@@ -45,10 +45,11 @@
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      vars = import ./variables.nix;
     in
     {
       nixosConfigurations = {
-        PD-19KDH72 = garuda.lib.garudaSystem {
+        ${vars.hostName} = garuda.lib.garudaSystem {
           inherit system;
           specialArgs = {
             inherit inputs;

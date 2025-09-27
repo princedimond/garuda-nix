@@ -9,6 +9,9 @@
   ...
 }:
 
+let
+  vars = import ./variables.nix;
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -27,7 +30,7 @@
   boot.initrd.luks.devices."luks-5cbbfd51-d1d4-4eaa-af02-223436145bf4".device =
     "/dev/disk/by-uuid/5cbbfd51-d1d4-4eaa-af02-223436145bf4";
 
-  networking.hostName = "PD-19KDH72"; # Define your hostname.
+  networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -75,28 +78,18 @@
   programs.neovim.vimAlias = true;
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = vars.timeZone;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = vars.locale;
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
+  i18n.extraLocaleSettings = vars.localeSettings;
 
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.princedimond = {
+  # Define a user account. Don't forget to set a password with 'passwd'.
+  users.users.${vars.userName} = {
     isNormalUser = true;
-    description = "princedimond";
+    description = vars.userName;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -178,7 +171,8 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = false;
-    users.princedimond = import ./home.nix;
+    users.${vars.userName} = import ./home.nix;
+    extraSpecialArgs = { inherit vars; };
   };
 
   # This value determines the NixOS release from which the default

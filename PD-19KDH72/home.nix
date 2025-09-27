@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "princedimond";
-  home.homeDirectory = "/home/princedimond";
+  home.username = vars.userName;
+  home.homeDirectory = vars.homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

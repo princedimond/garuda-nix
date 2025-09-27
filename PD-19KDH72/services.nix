@@ -1,13 +1,16 @@
 # Services configuration
 { config, pkgs, ... }:
 
+let
+  vars = import ./variables.nix;
+in
 {
   # System services configuration
   services = {
     # Configure keymap in X11
     xserver.xkb = {
-      layout = "us";
-      variant = "";
+      layout = vars.keyboard.layout;
+      variant = vars.keyboard.variant;
     };
 
     # Flatpak service and packages
