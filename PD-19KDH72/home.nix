@@ -1,10 +1,15 @@
-{ config, pkgs, vars, ... }:
+{
+  config,
+  pkgs,
+  vars,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = vars.userName;
-  home.homeDirectory = vars.homeDirectory;
+  #home.userName = vars.userName;
+  #home.homeDirectory = vars.homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -17,8 +22,8 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = 
-    let 
+  home.packages =
+    let
       userPkgs = import (./packages/user.nix) { inherit pkgs; };
       devPkgs = import (./packages/development.nix) { inherit pkgs; };
     in
@@ -28,13 +33,13 @@
     # userPkgs.media ++
     # userPkgs.productivity ++
     # userPkgs.shell ++
-    
+
     # Development packages for user environment (uncomment categories you want)
     # devPkgs.languages ++
     # devPkgs.vcs ++
     # devPkgs.api ++
     # devPkgs.docs ++
-    
+
     # Custom packages can still be added directly here
     (with pkgs; [
       # Add any one-off packages here

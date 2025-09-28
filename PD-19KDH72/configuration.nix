@@ -85,7 +85,6 @@ in
 
   i18n.extraLocaleSettings = vars.localeSettings;
 
-
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.${vars.userName} = {
     isNormalUser = true;
@@ -111,6 +110,7 @@ in
     allowUnFree = true;
     permittedInsecurePackages = [
       "libsoup-2.74.3"
+      "electron-35.7.5"
     ];
   };
 
@@ -148,8 +148,6 @@ in
     # userName = "princedimond";
     # userEmail = "princedimond@gmail.com";
   };
-
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
