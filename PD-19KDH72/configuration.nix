@@ -138,6 +138,7 @@ in
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++
+       devPkgs.editors ++
       [ ];
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages

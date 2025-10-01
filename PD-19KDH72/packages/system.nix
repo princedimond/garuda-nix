@@ -18,14 +18,14 @@
 
   # Development tools
   development = with pkgs; [
-    vscode
+    #vscode
     gitkraken
     github-desktop
     meld
     nixd
     nil
-    helix-gpt
-    evil-helix
+    #helix-gpt
+    #evil-helix
     nh
     onefetch
     inputs.nixvim.packages.x86_64-linux.default
@@ -72,6 +72,8 @@
     teamviewer
     warp-terminal
     zed-editor
+    remmina
+    xrdp
   ];
 
   # Printing support
