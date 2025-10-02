@@ -38,6 +38,11 @@ in
     # openssh.enable = true;
   };
 
+  # Custom Enables
+  programs = {
+    virt-manager.enable = true;
+  };
+
   # Custom systemd services
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];

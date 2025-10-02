@@ -72,6 +72,8 @@
     teamviewer
     warp-terminal
     zed-editor
+    #virt-manager
+    spice-gtk
   ];
 
   # Printing support
