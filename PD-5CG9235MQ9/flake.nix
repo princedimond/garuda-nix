@@ -1,6 +1,15 @@
 {
   description = "Garuda-NIX";
 
+  nixConfig.extra-substituters = [
+    "https://nyx.chaotic.cx"
+  ];
+
+   nixConfig.extra-trusted-public-keys = [
+     "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+     "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+   ];
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
@@ -36,27 +45,21 @@
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      vars = import ./variables.nix;
     in
     {
       nixosConfigurations = {
-        PD-5CG9235MQ9 = garuda.lib.garudaSystem {
+        ${vars.hostName} = garuda.lib.garudaSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
           };
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
+            home-manager.nixosModules.home-manager
             ./configuration.nix
           ];
         };
       };
-      /*
-          homeConfigurations = {
-            PD-5CG9235MQ9 = home-manager.lib.homeManagerConfiguration {
-              modules = [ ./home.nix ];
-              inherit pkgs;
-            }
-          };
-      */
     };
 }
