@@ -18,7 +18,7 @@ in
     ./hardware-configuration.nix
     # Services configuration
     ./services.nix
-    ../packages/virtualisation.nix
+    ./packages/virtualisation.nix
   ];
 
   # Bootloader.
