@@ -2,10 +2,21 @@
   config,
   pkgs,
   vars,
+  catppuccin,
   ...
 }:
 
 {
+  # Import Catppuccin Home Manager module
+  imports = [ catppuccin.homeModules.catppuccin ];
+
+  # Enable Catppuccin theming
+  catppuccin = {
+    enable = true;
+    flavor = "mocha"; # Options: latte, frappe, macchiato, mocha
+    accent = "mauve"; # Options: rosewater, flamingo, pink, mauve, red, maroon, peach, yellow, green, teal, sky, sapphire, blue, lavender
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #home.userName = vars.userName;

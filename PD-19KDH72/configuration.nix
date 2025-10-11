@@ -171,7 +171,10 @@ in
     useGlobalPkgs = true;
     useUserPackages = false;
     users.${vars.userName} = import ./home.nix;
-    extraSpecialArgs = { inherit vars; };
+    extraSpecialArgs = { 
+      inherit vars;
+      inherit (inputs) catppuccin;
+    };
   };
 
   # This value determines the NixOS release from which the default
