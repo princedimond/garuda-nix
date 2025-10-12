@@ -138,8 +138,8 @@ in
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++
-       devPkgs.editors ++
-      [ ];
+      devPkgs.editors
+    ++ [ ];
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
 
@@ -171,9 +171,10 @@ in
     useGlobalPkgs = true;
     useUserPackages = false;
     users.${vars.userName} = import ./home.nix;
-    extraSpecialArgs = { 
+    extraSpecialArgs = {
       inherit vars;
       inherit (inputs) catppuccin;
+      inherit (inputs) garuda;
     };
   };
 

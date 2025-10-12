@@ -3,12 +3,16 @@
   pkgs,
   vars,
   catppuccin,
+  garuda,
   ...
 }:
 
 {
   # Import Catppuccin Home Manager module
-  imports = [ catppuccin.homeModules.catppuccin ];
+  imports = [
+    catppuccin.homeModules.catppuccin
+    #garuda.homeModules.garuda
+  ];
 
   # Enable Catppuccin theming
   catppuccin = {
