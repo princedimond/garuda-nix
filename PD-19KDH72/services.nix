@@ -24,6 +24,9 @@ in
     # Hardware services
     hardware.bolt.enable = true;
 
+    # Enable (make available) Cosmic Desktop Environment
+    desktopManager.cosmic.enable = true;
+
     # VPN and networking services
     expressvpn.enable = true;
     tailscale.enable = true;
