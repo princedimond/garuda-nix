@@ -27,8 +27,7 @@ in
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices."luks-f166bf67-4322-4026-976e-43326f6a571d".device =
-    "/dev/disk/by-uuid/f166bf67-4322-4026-976e-43326f6a571d";
+  boot.initrd.luks.devices."luks-d143025c-7c67-4951-b4b0-637312e97f93".device = "/dev/disk/by-uuid/d143025c-7c67-4951-b4b0-637312e97f93";
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -138,19 +137,16 @@ in
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++
-      devPkgs.editors
-    ++ [ ];
+      [ ];
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
 
-  /*
-    # Git Options
-    programs.git = {
-      enable = true;
-       userName = "princedimond";
-       userEmail = "princedimond@gmail.com";
-    };
-  */
+  # Git Options
+  programs.git = {
+    enable = true;
+    # userName = "princedimond";
+    # userEmail = "princedimond@gmail.com";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -14,7 +14,6 @@
     glances
     mission-center
     apacheHttpd
-    hollywood
   ];
 
   # Development tools

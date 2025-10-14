@@ -138,7 +138,8 @@ in
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++
-      [ ];
+      devPkgs.editors
+    ++ [ ];
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
 
@@ -170,7 +171,11 @@ in
     useGlobalPkgs = true;
     useUserPackages = false;
     users.${vars.userName} = import ./home.nix;
-    extraSpecialArgs = { inherit vars; };
+    extraSpecialArgs = {
+      inherit vars;
+      inherit (inputs) catppuccin;
+      inherit (inputs) garuda;
+    };
   };
 
   # This value determines the NixOS release from which the default

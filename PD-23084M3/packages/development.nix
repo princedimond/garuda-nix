@@ -21,9 +21,9 @@
   # Development tools and IDEs
   editors = with pkgs; [
     # These are already in system.nix but you can move them here if preferred:
-    vscode
-    helix-gpt
-    evil-helix
+    # vscode
+    # helix-gpt
+    # evil-helix
   ];
 
   # Version control and collaboration
