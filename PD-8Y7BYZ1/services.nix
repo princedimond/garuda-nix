@@ -24,13 +24,9 @@ in
     # Hardware services
     hardware.bolt.enable = true;
 
-    # Enable (make available) Cosmic Desktop Environment
-    desktopManager.cosmic.enable = true;
-
     # VPN and networking services
     expressvpn.enable = true;
     tailscale.enable = true;
-    xrdp.enable = true;
 
     # Printing service
     printing.enable = true; # enable CUPS to print documents
@@ -39,7 +35,7 @@ in
     teamviewer.enable = true;
 
     # Enable the OpenSSH daemon (currently commented out)
-    openssh.enable = true;
+    # openssh.enable = true;
   };
 
   # Custom systemd services

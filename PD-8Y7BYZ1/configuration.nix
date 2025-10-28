@@ -9,10 +9,15 @@
   ...
 }:
 
+let
+  vars = import ./variables.nix;
+in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # Services configuration
+    ./services.nix
   ];
 
   # Bootloader.
@@ -24,7 +29,8 @@
 
   boot.initrd.luks.devices."luks-3c5d1ce1-a153-445a-8875-aa0eaca3ed35".device =
     "/dev/disk/by-uuid/3c5d1ce1-a153-445a-8875-aa0eaca3ed35";
-  networking.hostName = "PD-8Y7BYZ1"; # Define your hostname.
+
+  networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -72,120 +78,69 @@
   programs.neovim.vimAlias = true;
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = vars.timeZone;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = vars.locale;
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
+  i18n.extraLocaleSettings = vars.localeSettings;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.princedimond = {
+  # Define a user account. Don't forget to set a password with 'passwd'.
+  users.users.${vars.userName} = {
     isNormalUser = true;
-    description = "princedimond";
+    description = vars.userName;
     extraGroups = [
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      thunderbird
-      thunderbolt
-      wine
-      wine64
-      wine-wayland
+    packages =
+      let
+        systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
+      in
+      systemPkgs.wine
+      ++ (with pkgs; [
+        thunderbird
+        thunderbolt
+      ]);
+  };
+
+  # Nix packages config unfree/allowed insecure packages
+  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnFree = true;
+    permittedInsecurePackages = [
+      "libsoup-2.74.3"
+      "electron-35.7.5"
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
+  # Import organized package lists
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    curl
-    pciutils
-    ferdium
-    protonvpn-gui
-    protonvpn-cli
-    gitkraken
-    github-desktop
-    btop
-    vscode
-    bitwarden
-    expressvpn
-    onlyoffice-bin
-    direnv
-    #vlc
-    deluge
-    htop
-    glances
-    #pro-office-calculator
-    mission-center
-    pkgs.gnome-disk-utility
-    orca-slicer
-    fastfetch
-    meld
-    #node2nix
-    nixd
-    #helix
-    helix-gpt
-    nh
-    apacheHttpd
-    tailscale
-    thunderbolt
-    affine
-    gthumb
-    # kdePackages.gwenview
-    evil-helix
-    xfce.thunar
-    hplipWithPlugin
-    hplip
-    system-config-printer
-    imagemagick
-    graphicsmagick-imagemagick-compat
-    gthumb
-    discord
-    flatpak
-    inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
-    inputs.nixvim.packages.x86_64-linux.default
-  ];
+  environment.systemPackages =
+    let
+      systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
+      devPkgs = import (./packages/development.nix) { inherit pkgs; };
+    in
+    # Flatten all package categories into a single list
+    systemPkgs.core
+    ++ systemPkgs.development
+    ++ systemPkgs.productivity
+    ++ systemPkgs.networking
+    ++ systemPkgs.media
+    ++ systemPkgs.utilities
+    ++ systemPkgs.printing
+    ++ systemPkgs.browsers
+    ++ systemPkgs.extras
+    ++
+      # Add development packages (uncomment categories you want to enable)
+      # devPkgs.languages ++
+      # devPkgs.build ++
+      # devPkgs.databases ++
+      # devPkgs.containers ++
+      [ ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "libsoup-2.74.3"
-  ];
-
-  systemd.services.flatpak-repo = {
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      flatpak install -y microsoft-edge
-    '';
-  };
-
-  services.flatpak.packages = [
-    "com.microsoft.Edge"
-  ];
+  # Note: Wine packages are handled separately in users.users.princedimond.packages
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -195,15 +150,7 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-  services.flatpak.enable = true;
-  services.hardware.bolt.enable = true;
-  services.expressvpn.enable = true;
-  services.tailscale.enable = true;
-  services.printing.enable = true; # enable CUPS to print documents
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Services are now configured in services.nix
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -211,9 +158,17 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Home Manager configuration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = false;
+    users.${vars.userName} = import ./home.nix;
+    extraSpecialArgs = { inherit vars; };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).

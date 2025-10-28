@@ -45,7 +45,16 @@
       # Add any one-off packages here
       # pkgs.hello
       # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+      # Git Options
+ 
     ]);
+
+  programs.git = {
+    enable = true;
+    userName = "princedimond";
+    userEmail = "princedimond@gmail.com";
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
