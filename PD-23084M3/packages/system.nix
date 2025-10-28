@@ -14,6 +14,7 @@
     glances
     mission-center
     apacheHttpd
+    rar
   ];
 
   # Development tools
@@ -21,6 +22,7 @@
     vscode
     gitkraken
     github-desktop
+    git-lfs
     meld
     nixd
     nil
@@ -49,7 +51,6 @@
     protonvpn-cli
     expressvpn
     tailscale
-    barrier
   ];
 
   # Media and graphics
@@ -73,7 +74,12 @@
     warp-terminal
     zed-editor
     #virt-manager
+    virt-viewer
     spice-gtk
+    spice-protocol
+    hollywood
+    win-virtio
+    win-spice
   ];
 
   # Printing support
@@ -99,5 +105,7 @@
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
+    open-webui
+    lmstudio
   ];
 }

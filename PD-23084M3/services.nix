@@ -7,6 +7,7 @@ in
 {
   # System services configuration
   services = {
+    spice-vdagentd.enable = true;
     # Configure keymap in X11
     xserver.xkb = {
       layout = vars.keyboard.layout;

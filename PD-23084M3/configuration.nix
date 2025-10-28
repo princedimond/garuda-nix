@@ -93,6 +93,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
     ];
     packages =
       let
@@ -142,13 +143,6 @@ in
       [ ];
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
-
-  # Git Options
-  programs.git = {
-    enable = true;
-    # userName = "princedimond";
-    # userEmail = "princedimond@gmail.com";
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
