@@ -78,6 +78,14 @@
   #
   #  /etc/profiles/per-user/princedimond/etc/profile.d/hm-session-vars.sh
   #
+
+  # Git Options
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+    userName = "princedimond";
+    userEmail = "princedimond@gmail.com";
+  };
   home.sessionVariables = {
     # EDITOR = "emacs";
   };

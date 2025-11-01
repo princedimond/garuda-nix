@@ -1,6 +1,15 @@
 {
   description = "Garuda-NIX";
 
+  nixConfig.extra-substituters = [
+    "https://nyx.chaotic.cx"
+  ];
+
+  nixConfig.extra-trusted-public-keys = [
+    "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+    "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+  ];
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
@@ -32,15 +41,22 @@
       nix-flatpak,
       ...
     }:
+    let
+      lib = nixpkgs.lib;
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      vars = import ./variables.nix;
+    in
     {
       nixosConfigurations = {
-        PD-8Y7BYZ1 = garuda.lib.garudaSystem {
-          system = "x86_64-linux";
+        ${vars.hostName} = garuda.lib.garudaSystem {
+          inherit system;
           specialArgs = {
             inherit inputs;
           };
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
+            #home-manager.nixosModules.home-manager
             ./configuration.nix
           ];
         };

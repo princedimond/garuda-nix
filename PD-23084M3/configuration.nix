@@ -18,6 +18,7 @@ in
     ./hardware-configuration.nix
     # Services configuration
     ./services.nix
+    ./packages/virtualisation.nix
   ];
 
   # Bootloader.
@@ -27,7 +28,8 @@ in
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices."luks-d143025c-7c67-4951-b4b0-637312e97f93".device = "/dev/disk/by-uuid/d143025c-7c67-4951-b4b0-637312e97f93";
+  boot.initrd.luks.devices."luks-d143025c-7c67-4951-b4b0-637312e97f93".device =
+    "/dev/disk/by-uuid/d143025c-7c67-4951-b4b0-637312e97f93";
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -91,6 +93,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
     ];
     packages =
       let
@@ -140,13 +143,6 @@ in
       [ ];
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
-
-  # Git Options
-  programs.git = {
-    enable = true;
-    # userName = "princedimond";
-    # userEmail = "princedimond@gmail.com";
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

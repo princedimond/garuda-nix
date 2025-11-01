@@ -7,7 +7,6 @@ in
 {
   # System services configuration
   services = {
-    spice-vdagentd.enable = true;
     # Configure keymap in X11
     xserver.xkb = {
       layout = vars.keyboard.layout;
@@ -37,11 +36,6 @@ in
 
     # Enable the OpenSSH daemon (currently commented out)
     # openssh.enable = true;
-  };
-
-  # Custom Enables
-  programs = {
-    virt-manager.enable = true;
   };
 
   # Custom systemd services
