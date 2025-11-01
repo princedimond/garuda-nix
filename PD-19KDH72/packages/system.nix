@@ -50,7 +50,8 @@
     protonvpn-cli
     expressvpn
     tailscale
-    barrier
+    input-leap
+    deskflow
   ];
 
   # Media and graphics
@@ -75,6 +76,7 @@
     zed-editor
     remmina
     xrdp
+    lsirec
   ];
 
   # Printing support
