@@ -39,6 +39,7 @@
       plasma-manager,
       zen-browser,
       nix-flatpak,
+      catppuccin,
       ...
     }:
     let

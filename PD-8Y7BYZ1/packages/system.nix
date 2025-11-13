@@ -14,19 +14,18 @@
     glances
     mission-center
     apacheHttpd
-    hollywood
   ];
 
   # Development tools
   development = with pkgs; [
-    #vscode
+    vscode
     gitkraken
     github-desktop
     meld
     nixd
     nil
-    #helix-gpt
-    #evil-helix
+    helix-gpt
+    evil-helix
     nh
     onefetch
     inputs.nixvim.packages.x86_64-linux.default
@@ -50,8 +49,7 @@
     protonvpn-cli
     expressvpn
     tailscale
-    input-leap
-    deskflow
+    barrier
   ];
 
   # Media and graphics
@@ -74,9 +72,6 @@
     teamviewer
     warp-terminal
     zed-editor
-    remmina
-    xrdp
-    lsirec
   ];
 
   # Printing support
