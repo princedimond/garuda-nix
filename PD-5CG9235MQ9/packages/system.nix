@@ -14,6 +14,7 @@
     glances
     mission-center
     apacheHttpd
+    microsoft-edge
   ];
 
   # Development tools
