@@ -14,6 +14,7 @@
     glances
     mission-center
     apacheHttpd
+    microsoft-edge
   ];
 
   # Development tools
@@ -36,7 +37,7 @@
     ferdium
     discord
     thunderbird
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     affine
     anytype
     logseq
@@ -46,10 +47,10 @@
   # VPN and networking
   networking = with pkgs; [
     protonvpn-gui
-    protonvpn-cli
     expressvpn
     tailscale
-    barrier
+    input-leap
+    deskflow
   ];
 
   # Media and graphics
@@ -64,7 +65,7 @@
 
   # System utilities and file management
   utilities = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     xfce.thunar
     gnome-disk-utility
     system-config-printer
