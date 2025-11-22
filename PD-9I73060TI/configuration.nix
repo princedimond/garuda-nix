@@ -28,8 +28,10 @@ in
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+/*
   boot.initrd.luks.devices."luks-d143025c-7c67-4951-b4b0-637312e97f93".device =
     "/dev/disk/by-uuid/d143025c-7c67-4951-b4b0-637312e97f93";
+ */
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
