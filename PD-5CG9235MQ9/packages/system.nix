@@ -51,6 +51,7 @@
     tailscale
     input-leap
     deskflow
+    windterm
   ];
 
   # Media and graphics
