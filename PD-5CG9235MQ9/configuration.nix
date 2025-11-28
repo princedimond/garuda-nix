@@ -40,6 +40,13 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Other Environment Configs
+  environment.shellAliases = {
+    fr = "nh os switch --hostname $hostname ~/garuda-nix/$hostname";
+    fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
+    v = "nvim";
+  };
+
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
