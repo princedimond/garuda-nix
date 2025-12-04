@@ -19,7 +19,6 @@ in
     # Services configuration
     ./services.nix
     ./packages/virtualisation.nix
-    #./packages/development.nix
   ];
 
   # Bootloader
@@ -134,7 +133,7 @@ in
   environment.systemPackages =
     let
       systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
-      #devPkgs = import (./packages/development.nix) { inherit pkgs inputs; };
+      devPkgs = import (./packages/development.nix) { inherit pkgs inputs; };
     in
     # Flatten all package categories into a single list
     systemPkgs.core
@@ -146,12 +145,11 @@ in
     ++ systemPkgs.printing
     ++ systemPkgs.browsers
     ++ systemPkgs.extras
+    # Add development packages (uncomment categories you want to enable)
+    ++ devPkgs.languages
+    ++ devPkgs.editors
+    ++ devPkgs.vcs
     ++
-      # Add development packages (uncomment categories you want to enable)
-      #++ devPkgs.languages
-      #++ devPkgs.editors
-      #++ devPkgs.vcs
-
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++

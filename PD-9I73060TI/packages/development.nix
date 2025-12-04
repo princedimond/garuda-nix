@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # Programming languages and runtimes
@@ -16,17 +16,29 @@
     # dotnet-sdk
     # php
     # ruby
-
+    nixd
+    nil
   ];
 
   # Development tools and IDEs (with inputs)
   editors = with pkgs; [
     # These are already in system.nix but you can move them here if preferred:
-
+    evil-helix
+    helix-gpt
+    zed-editor
+    vscode
+    meld
+    inputs.nixvim.packages.x86_64-linux.default
   ];
 
   # Version control and collaboration
   vcs = with pkgs; [
+    git
+    gitui
+    gitkraken
+    github-desktop
+    gitnuro
+    git-lfs
 
   ];
   # Build tools and package managers
