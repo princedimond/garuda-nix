@@ -146,8 +146,9 @@ in
     ++ systemPkgs.printing
     ++ systemPkgs.browsers
     ++ systemPkgs.extras
+    # Add development packages (uncomment categories you want to enable)
+    ++ devPkgs.editors
     ++
-      # Add development packages (uncomment categories you want to enable)
       # devPkgs.languages ++
       # devPkgs.build ++
       # devPkgs.databases ++
@@ -172,7 +173,7 @@ in
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # Home Manager configuration
   home-manager = {
