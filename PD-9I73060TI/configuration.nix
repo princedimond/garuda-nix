@@ -19,9 +19,10 @@ in
     # Services configuration
     ./services.nix
     ./packages/virtualisation.nix
+    #./packages/development.nix
   ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -133,7 +134,7 @@ in
   environment.systemPackages =
     let
       systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
-      devPkgs = import (./packages/development.nix) { inherit pkgs; };
+      #devPkgs = import (./packages/development.nix) { inherit pkgs inputs; };
     in
     # Flatten all package categories into a single list
     systemPkgs.core
@@ -147,7 +148,10 @@ in
     ++ systemPkgs.extras
     ++
       # Add development packages (uncomment categories you want to enable)
-      # devPkgs.languages ++
+      #++ devPkgs.languages
+      #++ devPkgs.editors
+      #++ devPkgs.vcs
+
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++
