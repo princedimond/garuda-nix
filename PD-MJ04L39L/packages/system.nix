@@ -17,11 +17,12 @@
     apacheHttpd
     rar
     microsoft-edge
+    resources
   ];
 
   # Development tools
   development = with pkgs; [
-    vscode
+    #vscode
     gitkraken
     github-desktop
     gitnuro
@@ -88,6 +89,7 @@
     #hollywood
     virtio-win
     win-spice
+    rpi-imager
   ];
 
   # Printing support
