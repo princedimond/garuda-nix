@@ -4,7 +4,6 @@
   # Core system utilities
   core = with pkgs; [
     wget
-    git
     curl
     pciutils
     direnv
@@ -15,25 +14,27 @@
     mission-center
     apacheHttpd
     rar
+    nh
   ];
-
   # Development tools
   development = with pkgs; [
-    vscode
+    git # git is already in system packages
+    gitui
+    gh # GitHub CLI
+    onefetch
     gitkraken
     github-desktop
     gitnuro
     git-lfs
+    vscode
+    evil-helix
+    helix-gpt
     meld
+    zed-editor
+    inputs.nixvim.packages.x86_64-linux.default
     nixd
     nil
-    helix-gpt
-    evil-helix
-    nh
-    onefetch
-    inputs.nixvim.packages.x86_64-linux.default
   ];
-
   # Communication and productivity
   productivity = with pkgs; [
     ferdium
@@ -49,20 +50,21 @@
   # VPN and networking
   networking = with pkgs; [
     #protonvpn-gui
+    microsoft-edge
     expressvpn
     tailscale
     remmina
     wireguard-ui
     wireguard-tools
+    deluge
   ];
 
   # Media and graphics
   media = with pkgs; [
-    deluge
     gthumb
     imagemagick
     graphicsmagick-imagemagick-compat
-    #orca-slicer
+    orca-slicer
     lunacy
   ];
 
@@ -80,7 +82,7 @@
     virt-viewer
     spice-gtk
     spice-protocol
-    #hollywood
+    hollywood
     virtio-win
     win-spice
   ];

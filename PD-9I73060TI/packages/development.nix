@@ -16,24 +16,19 @@
     # dotnet-sdk
     # php
     # ruby
+
   ];
 
-  # Development tools and IDEs
+  # Development tools and IDEs (with inputs)
   editors = with pkgs; [
     # These are already in system.nix but you can move them here if preferred:
-    # vscode
-    # helix-gpt
-    # evil-helix
+
   ];
 
   # Version control and collaboration
   vcs = with pkgs; [
-    # git is already in system packages
-    # gitui
-    # gh # GitHub CLI
-    # lazygit
-  ];
 
+  ];
   # Build tools and package managers
   build = with pkgs; [
     # cmake
@@ -61,7 +56,6 @@
     # qemu
     # virtualbox
   ];
-
   # API testing and development
   api = with pkgs; [
     # postman
