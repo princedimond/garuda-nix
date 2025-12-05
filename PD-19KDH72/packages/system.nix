@@ -37,7 +37,7 @@
     ferdium
     discord
     thunderbird
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     affine
     anytype
     logseq
@@ -47,11 +47,14 @@
   # VPN and networking
   networking = with pkgs; [
     protonvpn-gui
-    protonvpn-cli
+    #protonvpn-cli
     expressvpn
     tailscale
     input-leap
     deskflow
+    microsoft-edge
+    windterm
+    winbox4
   ];
 
   # Media and graphics
@@ -66,7 +69,7 @@
 
   # System utilities and file management
   utilities = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     xfce.thunar
     gnome-disk-utility
     system-config-printer
