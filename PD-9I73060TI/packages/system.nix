@@ -18,22 +18,24 @@
   ];
   # Development tools
   development = with pkgs; [
-    git # git is already in system packages
-    gitui
-    gh # GitHub CLI
-    onefetch
-    gitkraken
-    github-desktop
-    gitnuro
-    git-lfs
-    vscode
-    evil-helix
-    helix-gpt
-    meld
-    zed-editor
-    inputs.nixvim.packages.x86_64-linux.default
-    nixd
-    nil
+    /*
+      git # git is already in system packages
+      gitui
+      gh # GitHub CLI
+      onefetch
+      gitkraken
+      github-desktop
+      gitnuro
+      git-lfs
+      vscode
+      evil-helix
+      helix-gpt
+      meld
+      zed-editor
+      inputs.nixvim.packages.x86_64-linux.default
+      nixd
+      nil
+    */
   ];
   # Communication and productivity
   productivity = with pkgs; [
