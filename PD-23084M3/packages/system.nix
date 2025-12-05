@@ -22,6 +22,7 @@
     vscode
     gitkraken
     github-desktop
+    gitnuro
     git-lfs
     meld
     nixd
@@ -38,7 +39,7 @@
     ferdium
     discord
     thunderbird
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     affine
     anytype
     logseq
@@ -47,10 +48,12 @@
 
   # VPN and networking
   networking = with pkgs; [
-    protonvpn-gui
-    protonvpn-cli
+    #protonvpn-gui
     expressvpn
     tailscale
+    remmina
+    wireguard-ui
+    wireguard-tools
   ];
 
   # Media and graphics
@@ -65,7 +68,7 @@
 
   # System utilities and file management
   utilities = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     xfce.thunar
     gnome-disk-utility
     system-config-printer
@@ -77,8 +80,8 @@
     virt-viewer
     spice-gtk
     spice-protocol
-    hollywood
-    win-virtio
+    #hollywood
+    virtio-win
     win-spice
   ];
 
@@ -105,7 +108,7 @@
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
-    open-webui
+    #open-webui
     lmstudio
   ];
 }

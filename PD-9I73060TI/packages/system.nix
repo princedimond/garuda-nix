@@ -4,7 +4,6 @@
   # Core system utilities
   core = with pkgs; [
     wget
-    git
     curl
     pciutils
     direnv
@@ -14,24 +13,30 @@
     glances
     mission-center
     apacheHttpd
-    microsoft-edge
+    rar
+    nh
   ];
-
   # Development tools
   development = with pkgs; [
-    #vscode
-    gitkraken
-    github-desktop
-    meld
-    nixd
-    nil
-    #helix-gpt
-    #evil-helix
-    nh
-    onefetch
-    inputs.nixvim.packages.x86_64-linux.default
+    /*
+      git # git is already in system packages
+      gitui
+      gh # GitHub CLI
+      onefetch
+      gitkraken
+      github-desktop
+      gitnuro
+      git-lfs
+      vscode
+      evil-helix
+      helix-gpt
+      meld
+      zed-editor
+      inputs.nixvim.packages.x86_64-linux.default
+      nixd
+      nil
+    */
   ];
-
   # Communication and productivity
   productivity = with pkgs; [
     ferdium
@@ -46,17 +51,18 @@
 
   # VPN and networking
   networking = with pkgs; [
-    protonvpn-gui
+    #protonvpn-gui
+    microsoft-edge
     expressvpn
     tailscale
-    input-leap
-    deskflow
-    windterm
+    remmina
+    wireguard-ui
+    wireguard-tools
+    deluge
   ];
 
   # Media and graphics
   media = with pkgs; [
-    deluge
     gthumb
     imagemagick
     graphicsmagick-imagemagick-compat
@@ -74,8 +80,13 @@
     teamviewer
     warp-terminal
     zed-editor
-    remmina
-    xrdp
+    #virt-manager
+    virt-viewer
+    spice-gtk
+    spice-protocol
+    hollywood
+    virtio-win
+    win-spice
   ];
 
   # Printing support
@@ -101,5 +112,7 @@
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
+    #open-webui
+    lmstudio
   ];
 }

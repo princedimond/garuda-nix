@@ -11,12 +11,11 @@
   ];
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     nixvim.url = "github:dc-tec/nixvim";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    catppuccin.url = "github:catppuccin/nix";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs = {
@@ -57,7 +56,6 @@
           };
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
-            catppuccin.nixosModules.catppuccin
             #home-manager.nixosModules.home-manager
             ./configuration.nix
           ];

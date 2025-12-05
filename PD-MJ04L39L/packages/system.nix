@@ -9,12 +9,15 @@
     pciutils
     direnv
     fastfetch
+    microfetch
     btop
     htop
     glances
     mission-center
     apacheHttpd
+    rar
     microsoft-edge
+    resources
   ];
 
   # Development tools
@@ -22,11 +25,13 @@
     #vscode
     gitkraken
     github-desktop
+    gitnuro
+    git-lfs
     meld
     nixd
     nil
-    #helix-gpt
-    #evil-helix
+    helix-gpt
+    evil-helix
     nh
     onefetch
     inputs.nixvim.packages.x86_64-linux.default
@@ -46,12 +51,15 @@
 
   # VPN and networking
   networking = with pkgs; [
-    protonvpn-gui
+    #protonvpn-gui
     expressvpn
     tailscale
-    input-leap
-    deskflow
+    remmina
+    wireguard-ui
+    wireguard-tools
+    putty
     windterm
+    winbox4
   ];
 
   # Media and graphics
@@ -60,7 +68,7 @@
     gthumb
     imagemagick
     graphicsmagick-imagemagick-compat
-    orca-slicer
+    #orca-slicer
     lunacy
   ];
 
@@ -74,8 +82,15 @@
     teamviewer
     warp-terminal
     zed-editor
-    remmina
-    xrdp
+    #virt-manager
+    virt-viewer
+    spice-gtk
+    spice-protocol
+    #hollywood
+    virtio-win
+    win-spice
+    rpi-imager
+    input-leap
   ];
 
   # Printing support
@@ -101,5 +116,7 @@
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
+    #open-webui
+    lmstudio
   ];
 }

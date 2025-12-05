@@ -40,6 +40,7 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.wireguard.enable = true;
 
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -94,6 +95,7 @@ in
       "networkmanager"
       "wheel"
       "libvirtd"
+      "podman"
     ];
     packages =
       let
