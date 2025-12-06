@@ -90,6 +90,7 @@
     virtio-win
     win-spice
     rpi-imager
+    input-leap
   ];
 
   # Printing support

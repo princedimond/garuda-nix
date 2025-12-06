@@ -17,7 +17,7 @@ in
     flatpak = {
       enable = true;
       packages = [
-        "com.microsoft.Edge"
+       # "com.microsoft.Edge"
       ];
     };
 
@@ -47,7 +47,7 @@ in
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      flatpak install -y microsoft-edge
+      #flatpak install -y microsoft-edge
     '';
   };
 }
