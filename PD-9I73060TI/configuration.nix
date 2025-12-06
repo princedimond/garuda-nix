@@ -142,6 +142,7 @@ in
     ++ systemPkgs.networking
     ++ systemPkgs.media
     ++ systemPkgs.utilities
+    ++ systemPkgs.gaming
     ++ systemPkgs.printing
     ++ systemPkgs.browsers
     ++ systemPkgs.extras

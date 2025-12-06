@@ -59,6 +59,7 @@
     wireguard-ui
     wireguard-tools
     deluge
+    winbox4
   ];
 
   # Media and graphics
@@ -68,6 +69,7 @@
     graphicsmagick-imagemagick-compat
     orca-slicer
     lunacy
+    obs-studio
   ];
 
   # System utilities and file management
@@ -89,6 +91,14 @@
     win-spice
   ];
 
+  # Gaming
+  gaming = with pkgs; [
+    xivlauncher
+    steam
+    heroic
+    umu-launcher
+  ];
+
   # Printing support
   printing = with pkgs; [
     hplipWithPlugin
@@ -105,14 +115,12 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
-    #open-webui
+    open-webui
     lmstudio
   ];
 }
