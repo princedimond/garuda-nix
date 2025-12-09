@@ -12,6 +12,7 @@
     htop
     glances
     mission-center
+    resources
     apacheHttpd
     rar
     nh
@@ -97,6 +98,7 @@
     steam
     heroic
     umu-launcher
+    nvidia-system-monitor-qt
   ];
 
   # Printing support

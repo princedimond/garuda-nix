@@ -13,9 +13,12 @@ in
   services = {
     spice-vdagentd.enable = true;
     # Configure keymap in X11
-    xserver.xkb = {
-      layout = vars.keyboard.layout;
-      variant = vars.keyboard.variant;
+    xserver = {
+      xkb = {
+        layout = vars.keyboard.layout;
+        variant = vars.keyboard.variant;
+      };
+      videoDrivers = [ "nvidia" ];
     };
 
     # Flatpak service and packages
@@ -24,6 +27,7 @@ in
       packages = [
         #"com.microsoft.Edge"
         #"com.mikrotik.WinBox"
+        "io.github.astralvixen.geforce-infinity"
       ];
     };
     # Enable (make available) Cosmic Desktop Environment
@@ -40,7 +44,10 @@ in
     teamviewer.enable = true;
 
     # Enable the OpenSSH daemon (currently commented out)
-    # openssh.enable = true;
+    openssh.enable = true;
+
+    # Enable Input from keyboard and mouse on wayland
+    libinput.enable = true;
 
     # Hardware services
     #hardware.bolt.enable = true;
@@ -78,7 +85,10 @@ in
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # Override to add hostname to build dependencies
+      package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs (oldAttrs: {
+        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.inetutils ];
+      });
     };
   };
 
@@ -94,6 +104,7 @@ in
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       #flatpak install -y microsoft-edge
       #flatpak install -y WinBox
+      flatpak install -y geforce-infinity
     '';
   };
 }
