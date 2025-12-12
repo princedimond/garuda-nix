@@ -1,10 +1,15 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Core system utilities
   core = with pkgs; [
     wget
     curl
+    filezilla
     pciutils
     direnv
     fastfetch
@@ -44,6 +49,10 @@
     discord
     thunderbird
     onlyoffice-desktopeditors
+    kdePackages.calligra
+    libreoffice-qt-fresh
+    dia
+    yed
     affine
     anytype
     logseq
@@ -71,6 +80,11 @@
     orca-slicer
     lunacy
     obs-studio
+    kdePackages.kdenlive
+    krita
+    davinci-resolve
+    handbrake
+    devede
   ];
 
   # System utilities and file management
@@ -99,6 +113,8 @@
     heroic
     umu-launcher
     nvidia-system-monitor-qt
+    protonup-ng
+    protonup-qt
   ];
 
   # Printing support
@@ -125,4 +141,14 @@
     open-webui
     lmstudio
   ];
+
+  # Programs as modules for extra options
+  programs = {
+    steam = {
+      enable = true;
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+      ];
+    };
+  };
 }
