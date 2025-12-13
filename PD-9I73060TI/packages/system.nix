@@ -1,10 +1,15 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Core system utilities
   core = with pkgs; [
     wget
     curl
+    filezilla
     pciutils
     direnv
     fastfetch
@@ -12,6 +17,7 @@
     htop
     glances
     mission-center
+    resources
     apacheHttpd
     rar
     nh
@@ -43,6 +49,10 @@
     discord
     thunderbird
     onlyoffice-desktopeditors
+    kdePackages.calligra
+    libreoffice-qt-fresh
+    dia
+    yed
     affine
     anytype
     logseq
@@ -59,6 +69,7 @@
     wireguard-ui
     wireguard-tools
     deluge
+    winbox4
   ];
 
   # Media and graphics
@@ -68,6 +79,12 @@
     graphicsmagick-imagemagick-compat
     orca-slicer
     lunacy
+    obs-studio
+    kdePackages.kdenlive
+    krita
+    davinci-resolve
+    handbrake
+    devede
   ];
 
   # System utilities and file management
@@ -89,6 +106,17 @@
     win-spice
   ];
 
+  # Gaming
+  gaming = with pkgs; [
+    xivlauncher
+    steam
+    heroic
+    umu-launcher
+    nvidia-system-monitor-qt
+    protonup-ng
+    protonup-qt
+  ];
+
   # Printing support
   printing = with pkgs; [
     hplipWithPlugin
@@ -105,14 +133,22 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
-    #open-webui
+    open-webui
     lmstudio
   ];
+
+  # Programs as modules for extra options
+  programs = {
+    steam = {
+      enable = true;
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+      ];
+    };
+  };
 }
