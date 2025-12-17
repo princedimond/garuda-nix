@@ -17,7 +17,7 @@ in
     flatpak = {
       enable = true;
       packages = [
-       # "com.microsoft.Edge"
+        # "com.microsoft.Edge"
       ];
     };
 
@@ -40,6 +40,9 @@ in
 
     # Enable the OpenSSH daemon (currently commented out)
     openssh.enable = true;
+
+    # Enable Input from keyboard and mouse on wayland
+    libinput.enable = true;
   };
 
   # Custom systemd services
