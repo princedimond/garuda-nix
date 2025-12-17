@@ -6,6 +6,18 @@
 }:
 
 {
+
+  imports = [
+    #./plasma.nix
+  ];
+
+  /*
+    programs.plasma = {
+      enable = true;
+      workspace.lookAndFeel = "dr460nized";
+    };
+  */
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #home.userName = vars.userName;

@@ -39,8 +39,9 @@
     github-desktop
     gitnuro
     git-lfs
-
+    gh
   ];
+
   # Build tools and package managers
   build = with pkgs; [
     # cmake

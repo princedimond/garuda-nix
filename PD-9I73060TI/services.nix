@@ -85,10 +85,12 @@ in
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      # Override to add hostname to build dependencies
-      package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs (oldAttrs: {
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.inetutils ];
-      });
+      /*
+        # Override to add hostname to build dependencies
+        package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs (oldAttrs: {
+          nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.inetutils ];
+        });
+      */
     };
   };
 

@@ -10,6 +10,7 @@
     wget
     curl
     filezilla
+    windterm
     pciutils
     direnv
     fastfetch
@@ -57,6 +58,7 @@
     anytype
     logseq
     evolution
+    quassel
   ];
 
   # VPN and networking
