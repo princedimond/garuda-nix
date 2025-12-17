@@ -94,6 +94,9 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
+    extraConfig = {
+      credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
+    };
     settings = {
       user.name = "princedimond";
       user.email = "princedimond@gmail.com";
