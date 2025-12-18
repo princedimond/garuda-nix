@@ -40,6 +40,7 @@
     gitnuro
     git-lfs
     gh
+    lazygit
   ];
 
   # Build tools and package managers
