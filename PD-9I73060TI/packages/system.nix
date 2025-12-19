@@ -52,6 +52,7 @@
     onlyoffice-desktopeditors
     kdePackages.calligra
     libreoffice-qt-fresh
+    freeplane
     dia
     yed
     affine
