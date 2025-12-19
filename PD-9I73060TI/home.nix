@@ -9,6 +9,7 @@
 
   imports = [
     #./plasma.nix
+    ./evil-helix.nix
   ];
 
   /*
