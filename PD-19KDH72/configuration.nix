@@ -76,7 +76,7 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
+      #cachyos-kernel = true;
       enable = true;
     };
   };
