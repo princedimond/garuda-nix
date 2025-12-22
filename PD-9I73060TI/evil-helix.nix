@@ -1,11 +1,16 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   enableEvilHelix = true; # Set to true to enable the configuration
 in {
   home.packages = with pkgs; (
     if enableEvilHelix
     then [
+      #inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.evil-helix_git
       evil-helix
-      cmake-language-server
+      #cmake-language-server  # pygls fails to build 8/25/25
       jsonnet-language-server
       luaformatter
       lua-language-server
@@ -40,6 +45,7 @@ in {
 
       [language-server.markdown]
       command = "marksman"
+
     ''
     else "";
 

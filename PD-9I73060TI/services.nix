@@ -26,7 +26,7 @@ in
       enable = true;
       packages = [
         #"com.microsoft.Edge"
-        #"com.mikrotik.WinBox"
+        #"app.openbubbles.OpenBubbles"
         "io.github.astralvixen.geforce-infinity"
       ];
     };
@@ -106,13 +106,13 @@ in
       script = ''
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         #flatpak install -y microsoft-edge
-        #flatpak install -y WinBox
+        #flatpak install -y app.openbubbles.OpenBubbles
         flatpak install -y geforce-infinity
       '';
     };
     coredump.extraConfig = ''
       ProcessSizeMax = 0
       ExternalSizeMax = 0
-      '';
+    '';
   };
 }
