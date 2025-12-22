@@ -10,6 +10,7 @@
     wget
     curl
     filezilla
+    windterm
     pciutils
     direnv
     fastfetch
@@ -51,12 +52,14 @@
     onlyoffice-desktopeditors
     kdePackages.calligra
     libreoffice-qt-fresh
+    freeplane
     dia
     yed
     affine
     anytype
     logseq
     evolution
+    quassel
   ];
 
   # VPN and networking

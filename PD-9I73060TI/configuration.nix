@@ -27,12 +27,7 @@ in
 
   # Use stable kernel for better Nvidia driver compatibility
   # Latest kernel (6.18) has API incompatibilities with current Nvidia drivers
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
-
-  /*
-    boot.initrd.luks.devices."luks-d143025c-7c67-4951-b4b0-637312e97f93".device =
-      "/dev/disk/by-uuid/d143025c-7c67-4951-b4b0-637312e97f93";
-  */
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -81,10 +76,19 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
+      #cachyos-kernel = true;
       enable = true;
     };
   };
+
+  /*
+    dr460nixed = {
+      chromium = true;
+      desktops.enable = true;
+      example-boot.enable = true;
+      performance = true;
+    };
+  */
 
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;

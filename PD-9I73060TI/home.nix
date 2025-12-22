@@ -6,6 +6,19 @@
 }:
 
 {
+
+  imports = [
+    #./plasma.nix
+    ./evil-helix.nix
+  ];
+
+  /*
+    programs.plasma = {
+      enable = true;
+      workspace.lookAndFeel = "dr460nized";
+    };
+  */
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #home.userName = vars.userName;
@@ -82,6 +95,9 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
+    extraConfig = {
+      credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
+    };
     settings = {
       user.name = "princedimond";
       user.email = "princedimond@gmail.com";

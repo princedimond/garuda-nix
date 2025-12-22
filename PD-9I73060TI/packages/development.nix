@@ -39,8 +39,10 @@
     github-desktop
     gitnuro
     git-lfs
-
+    gh
+    lazygit
   ];
+
   # Build tools and package managers
   build = with pkgs; [
     # cmake

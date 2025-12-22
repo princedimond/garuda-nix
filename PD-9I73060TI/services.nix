@@ -85,10 +85,12 @@ in
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      # Override to add hostname to build dependencies
-      package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs (oldAttrs: {
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.inetutils ];
-      });
+      /*
+        # Override to add hostname to build dependencies
+        package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs (oldAttrs: {
+          nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.inetutils ];
+        });
+      */
     };
   };
 
@@ -98,13 +100,19 @@ in
   };
 
   # Custom systemd services
-  systemd.services.flatpak-repo = {
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      #flatpak install -y microsoft-edge
-      #flatpak install -y WinBox
-      flatpak install -y geforce-infinity
-    '';
+  systemd = {
+    services.flatpak-repo = {
+      path = [ pkgs.flatpak ];
+      script = ''
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        #flatpak install -y microsoft-edge
+        #flatpak install -y WinBox
+        flatpak install -y geforce-infinity
+      '';
+    };
+    coredump.extraConfig = ''
+      ProcessSizeMax = 0
+      ExternalSizeMax = 0
+      '';
   };
 }
