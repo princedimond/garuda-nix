@@ -107,6 +107,7 @@
     hollywood
     virtio-win
     win-spice
+    czkawka-full
   ];
 
   # Gaming
