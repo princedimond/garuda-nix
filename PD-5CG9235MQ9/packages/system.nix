@@ -9,12 +9,16 @@
     pciutils
     direnv
     fastfetch
+    microfetch
     btop
     htop
     glances
     mission-center
     apacheHttpd
     microsoft-edge
+    tmux
+    rpi-imager
+    czkawka-full
   ];
 
   # Development tools
@@ -36,8 +40,10 @@
   productivity = with pkgs; [
     ferdium
     discord
+    discordo
     thunderbird
     onlyoffice-desktopeditors
+    joplin-desktop
     affine
     anytype
     logseq
@@ -52,6 +58,8 @@
     input-leap
     deskflow
     windterm
+    nmap
+    putty
   ];
 
   # Media and graphics
@@ -76,6 +84,8 @@
     zed-editor
     remmina
     xrdp
+    lynis
+    chirp
   ];
 
   # Printing support
@@ -94,8 +104,6 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed

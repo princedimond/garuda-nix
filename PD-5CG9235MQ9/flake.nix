@@ -1,6 +1,7 @@
 {
   description = "Garuda-NIX";
 
+  /*
   nixConfig.extra-substituters = [
     "https://nyx.chaotic.cx"
   ];
@@ -9,12 +10,23 @@
     "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
     "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
   ];
+  */
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     nixvim.url = "github:dc-tec/nixvim";
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser = {
+
+      url = "github:0xc000022070/zen-browser-flake";
+
+      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+
+      # to have it up-to-date or simply don't specify the nixpkgs input
+
+      inputs.nixpkgs.follows = "nixpkgs";
+
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     catppuccin.url = "github:catppuccin/nix";
     plasma-manager = {
@@ -57,7 +69,6 @@
           };
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
-            catppuccin.nixosModules.catppuccin
             #home-manager.nixosModules.home-manager
             ./configuration.nix
           ];

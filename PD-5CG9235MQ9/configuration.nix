@@ -18,6 +18,7 @@ in
     ./hardware-configuration.nix
     # Services configuration
     ./services.nix
+    ./japanese.nix
   ];
 
   # Bootloader.
@@ -76,7 +77,7 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
+      #cachyos-kernel = true;
       enable = true;
     };
   };
@@ -99,6 +100,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "dialout<:peeposword:1444484811950653542>"
     ];
     packages =
       let
@@ -146,6 +148,7 @@ in
       # devPkgs.databases ++
       # devPkgs.containers ++
       devPkgs.editors
+    ++ devPkgs.vcs
     ++ [ ];
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
@@ -159,6 +162,7 @@ in
     };
   */
 
+  programs.winbox.openFirewall = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -179,7 +183,11 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = false;
-    users.${vars.userName} = import ./home.nix;
+    users.${vars.userName} = {
+      imports = [
+        ./home.nix
+      ];
+    };
     extraSpecialArgs = { inherit vars; };
   };
 

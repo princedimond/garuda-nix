@@ -32,6 +32,7 @@
     # gitui
     # gh # GitHub CLI
     # lazygit
+    gitnuro
   ];
 
   # Build tools and package managers

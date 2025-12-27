@@ -18,6 +18,7 @@ in
       enable = true;
       packages = [
         #"com.microsoft.Edge"
+        "com.mikrotik.WinBox"
       ];
     };
 
@@ -37,6 +38,9 @@ in
 
     # Enable the OpenSSH daemon (currently commented out)
     openssh.enable = true;
+
+    # Enable Input from keyboard and mouse on wayland
+    libinput.enable = true;
   };
 
   # Custom systemd services
@@ -45,6 +49,7 @@ in
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       #flatpak install -y microsoft-edge
+      flatpak install -y  WinBox
     '';
   };
 }
