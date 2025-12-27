@@ -7,6 +7,7 @@ in
 {
   # System services configuration
   services = {
+    spice-vdagentd.enable = true;
     # Configure keymap in X11
     xserver.xkb = {
       layout = vars.keyboard.layout;
@@ -17,7 +18,7 @@ in
     flatpak = {
       enable = true;
       packages = [
-        "com.microsoft.Edge"
+        #"com.microsoft.Edge"
       ];
     };
 
@@ -38,12 +39,17 @@ in
     # openssh.enable = true;
   };
 
+  # Custom Enables
+  programs = {
+    virt-manager.enable = true;
+  };
+
   # Custom systemd services
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      flatpak install -y microsoft-edge
+      # flatpak install -y microsoft-edge
     '';
   };
 }

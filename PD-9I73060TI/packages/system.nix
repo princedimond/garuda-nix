@@ -1,11 +1,16 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Core system utilities
   core = with pkgs; [
     wget
-    git
     curl
+    filezilla
+    windterm
     pciutils
     direnv
     fastfetch
@@ -13,57 +18,76 @@
     htop
     glances
     mission-center
+    resources
     apacheHttpd
     rar
+    nh
   ];
-
   # Development tools
   development = with pkgs; [
-    vscode
-    gitkraken
-    github-desktop
-    gitnuro
-    git-lfs
-    meld
-    nixd
-    nil
-    helix-gpt
-    evil-helix
-    nh
-    onefetch
-    inputs.nixvim.packages.x86_64-linux.default
+    /*
+      git # git is already in system packages
+      gitui
+      gh # GitHub CLI
+      onefetch
+      gitkraken
+      github-desktop
+      gitnuro
+      git-lfs
+      vscode
+      evil-helix
+      helix-gpt
+      meld
+      zed-editor
+      inputs.nixvim.packages.x86_64-linux.default
+      nixd
+      nil
+    */
   ];
-
   # Communication and productivity
   productivity = with pkgs; [
     ferdium
     discord
     thunderbird
     onlyoffice-desktopeditors
+    kdePackages.calligra
+    libreoffice-qt-fresh
+    freeplane
+    dia
+    yed
     affine
     anytype
     logseq
     evolution
+    quassel
   ];
 
   # VPN and networking
   networking = with pkgs; [
     #protonvpn-gui
+    microsoft-edge
     expressvpn
     tailscale
     remmina
     wireguard-ui
     wireguard-tools
+    deluge
+    winbox4
   ];
 
   # Media and graphics
   media = with pkgs; [
-    deluge
     gthumb
     imagemagick
     graphicsmagick-imagemagick-compat
-    #orca-slicer
+    orca-slicer
     lunacy
+    obs-studio
+    kdePackages.kdenlive
+    krita
+    davinci-resolve
+    handbrake
+    devede
   ];
 
   # System utilities and file management
@@ -80,9 +104,21 @@
     virt-viewer
     spice-gtk
     spice-protocol
-    #hollywood
+    hollywood
     virtio-win
     win-spice
+    czkawka-full
+  ];
+
+  # Gaming
+  gaming = with pkgs; [
+    xivlauncher
+    steam
+    heroic
+    umu-launcher
+    nvidia-system-monitor-qt
+    protonup-ng
+    protonup-qt
   ];
 
   # Printing support
@@ -101,14 +137,22 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
-    #open-webui
+    open-webui
     lmstudio
   ];
+
+  # Programs as modules for extra options
+  programs = {
+    steam = {
+      enable = true;
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+      ];
+    };
+  };
 }

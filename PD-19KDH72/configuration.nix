@@ -40,6 +40,13 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Other Environment Configs
+  environment.shellAliases = {
+    fr = "nh os switch --hostname $hostname ~/garuda-nix/$hostname";
+    fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
+    v = "nvim";
+  };
+
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -69,13 +76,15 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
+      #cachyos-kernel = true;
       enable = true;
     };
   };
 
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
+
+  programs.winbox.openFirewall = true;
 
   # Set your time zone.
   time.timeZone = vars.timeZone;

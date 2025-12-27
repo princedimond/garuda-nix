@@ -6,6 +6,19 @@
 }:
 
 {
+
+  imports = [
+    #./plasma.nix
+    ./evil-helix.nix
+  ];
+
+  /*
+    programs.plasma = {
+      enable = true;
+      workspace.lookAndFeel = "dr460nized";
+    };
+  */
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #home.userName = vars.userName;
@@ -78,14 +91,19 @@
   #
   #  /etc/profiles/per-user/princedimond/etc/profile.d/hm-session-vars.sh
   #
-
   # Git Options
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "princedimond";
-    userEmail = "princedimond@gmail.com";
+    extraConfig = {
+      credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
+    };
+    settings = {
+      user.name = "princedimond";
+      user.email = "princedimond@gmail.com";
+    };
   };
+
   home.sessionVariables = {
     # EDITOR = "emacs";
   };

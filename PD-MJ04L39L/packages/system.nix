@@ -9,18 +9,24 @@
     pciutils
     direnv
     fastfetch
+    microfetch
     btop
     htop
     glances
     mission-center
     apacheHttpd
+    rar
+    microsoft-edge
+    resources
   ];
 
   # Development tools
   development = with pkgs; [
-    vscode
+    #vscode
     gitkraken
     github-desktop
+    gitnuro
+    git-lfs
     meld
     nixd
     nil
@@ -36,7 +42,7 @@
     ferdium
     discord
     thunderbird
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     affine
     anytype
     logseq
@@ -45,11 +51,15 @@
 
   # VPN and networking
   networking = with pkgs; [
-    protonvpn-gui
-    protonvpn-cli
+    #protonvpn-gui
     expressvpn
     tailscale
-    barrier
+    remmina
+    wireguard-ui
+    wireguard-tools
+    putty
+    windterm
+    winbox4
   ];
 
   # Media and graphics
@@ -58,13 +68,13 @@
     gthumb
     imagemagick
     graphicsmagick-imagemagick-compat
-    orca-slicer
+    #orca-slicer
     lunacy
   ];
 
   # System utilities and file management
   utilities = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     xfce.thunar
     gnome-disk-utility
     system-config-printer
@@ -72,6 +82,15 @@
     teamviewer
     warp-terminal
     zed-editor
+    #virt-manager
+    virt-viewer
+    spice-gtk
+    spice-protocol
+    #hollywood
+    virtio-win
+    win-spice
+    rpi-imager
+    input-leap
   ];
 
   # Printing support
@@ -97,5 +116,7 @@
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
+    #open-webui
+    lmstudio
   ];
 }

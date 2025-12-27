@@ -21,17 +21,13 @@ in
     ./packages/virtualisation.nix
   ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
+  # Use stable kernel for better Nvidia driver compatibility
+  # Latest kernel (6.18) has API incompatibilities with current Nvidia drivers
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-/*
-  boot.initrd.luks.devices."luks-d143025c-7c67-4951-b4b0-637312e97f93".device =
-    "/dev/disk/by-uuid/d143025c-7c67-4951-b4b0-637312e97f93";
- */
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -43,6 +39,13 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
   networking.wireguard.enable = true;
+
+  # Other Environment Configs
+  environment.shellAliases = {
+    fr = "nh os switch --hostname $hostname ~/garuda-nix/$hostname";
+    fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
+    v = "nvim";
+  };
 
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -73,10 +76,19 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
+      #cachyos-kernel = true;
       enable = true;
     };
   };
+
+  /*
+    dr460nixed = {
+      chromium = true;
+      desktops.enable = true;
+      example-boot.enable = true;
+      performance = true;
+    };
+  */
 
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
@@ -126,7 +138,7 @@ in
   environment.systemPackages =
     let
       systemPkgs = import (./packages/system.nix) { inherit pkgs inputs; };
-      devPkgs = import (./packages/development.nix) { inherit pkgs; };
+      devPkgs = import (./packages/development.nix) { inherit pkgs inputs; };
     in
     # Flatten all package categories into a single list
     systemPkgs.core
@@ -135,12 +147,15 @@ in
     ++ systemPkgs.networking
     ++ systemPkgs.media
     ++ systemPkgs.utilities
+    ++ systemPkgs.gaming
     ++ systemPkgs.printing
     ++ systemPkgs.browsers
     ++ systemPkgs.extras
+    # Add development packages (uncomment categories you want to enable)
+    ++ devPkgs.languages
+    ++ devPkgs.editors
+    ++ devPkgs.vcs
     ++
-      # Add development packages (uncomment categories you want to enable)
-      # devPkgs.languages ++
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++

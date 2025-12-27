@@ -18,6 +18,7 @@ in
     ./hardware-configuration.nix
     # Services configuration
     ./services.nix
+    ./packages/virtualisation.nix
   ];
 
   # Bootloader.
@@ -27,8 +28,10 @@ in
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices."luks-3c5d1ce1-a153-445a-8875-aa0eaca3ed35".device =
-    "/dev/disk/by-uuid/3c5d1ce1-a153-445a-8875-aa0eaca3ed35";
+  /*
+    boot.initrd.luks.devices."luks-d143025c-7c67-4951-b4b0-637312e97f93".device =
+      "/dev/disk/by-uuid/d143025c-7c67-4951-b4b0-637312e97f93";
+  */
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -39,6 +42,14 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.wireguard.enable = true;
+
+  # Other Environment Configs
+  environment.shellAliases = {
+    fr = "nh os switch --hostname $hostname ~/garuda-nix/$hostname";
+    fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
+    v = "nvim";
+  };
 
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -92,6 +103,9 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
+      "podman"
+      "dialout"
     ];
     packages =
       let
@@ -132,13 +146,16 @@ in
     ++ systemPkgs.printing
     ++ systemPkgs.browsers
     ++ systemPkgs.extras
+    # Add development packages (uncomment categories you want to enable)
+    ++ devPkgs.editors
     ++
-      # Add development packages (uncomment categories you want to enable)
       # devPkgs.languages ++
       # devPkgs.build ++
       # devPkgs.databases ++
       # devPkgs.containers ++
       [ ];
+
+  programs.winbox.openFirewall = true;
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
 
@@ -156,7 +173,7 @@ in
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # Home Manager configuration
   home-manager = {

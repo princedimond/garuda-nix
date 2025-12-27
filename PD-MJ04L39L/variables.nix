@@ -3,7 +3,7 @@
 
 {
   # System identification
-  hostName = "PD-8Y7BYZ1";
+  hostName = "PD-MJ04L39L";
   userName = "princedimond";
 
   # Regional settings
