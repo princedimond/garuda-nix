@@ -110,6 +110,10 @@ in
       "wheel"
       "libvirtd"
       "podman"
+      "input"
+      "video"
+      "seat"
+      "japanese"
     ];
     packages =
       let

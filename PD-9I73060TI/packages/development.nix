@@ -41,6 +41,7 @@
     git-lfs
     gh
     lazygit
+    onefetch
   ];
 
   # Build tools and package managers

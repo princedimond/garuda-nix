@@ -14,6 +14,7 @@
     pciutils
     direnv
     fastfetch
+    microfetch
     btop
     htop
     glances
