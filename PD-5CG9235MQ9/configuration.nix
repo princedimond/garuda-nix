@@ -18,7 +18,6 @@ in
     ./hardware-configuration.nix
     # Services configuration
     ./services.nix
-    ./japanese.nix
   ];
 
   # Bootloader.

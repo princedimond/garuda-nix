@@ -43,6 +43,7 @@
     # autoconf
     # automake
     # libtool
+    direnv
   ];
 
   # Database tools
