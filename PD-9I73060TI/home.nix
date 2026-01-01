@@ -10,6 +10,7 @@
   imports = [
     #./plasma.nix
     ./evil-helix.nix
+    ./japanese.nix
   ];
 
   /*
@@ -95,12 +96,10 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    extraConfig = {
-      credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
-    };
     settings = {
       user.name = "princedimond";
       user.email = "princedimond@gmail.com";
+      credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
     };
   };
 
