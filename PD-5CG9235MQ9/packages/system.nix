@@ -45,7 +45,7 @@
     onlyoffice-desktopeditors
     joplin-desktop
     affine
-    anytype
+    #anytype
     logseq
     evolution
   ];
