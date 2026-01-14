@@ -12,6 +12,11 @@ in
   # System services configuration
   services = {
     spice-vdagentd.enable = true;
+    # Force plasma as the default session so module conflicts (pantheon/plasma)
+    # don't change the default. This gives priority to plasma.
+    displayManager = {
+      defaultSession = pkgs.lib.mkForce "plasma";
+    };
     # Configure keymap in X11
     xserver = {
       xkb = {
@@ -28,10 +33,16 @@ in
         #"com.microsoft.Edge"
         #"app.openbubbles.OpenBubbles"
         "io.github.astralvixen.geforce-infinity"
+        "com.obsproject.Studio"
+        "com.github.tchx84.Flatseal"
+        #"com.softfever.OrcaSlicer"
       ];
     };
     # Enable (make available) Cosmic Desktop Environment
-    desktopManager.cosmic.enable = true;
+    desktopManager = {
+      cosmic.enable = true;
+      #pantheon.enable = true;
+    };
 
     # VPN and networking services
     expressvpn.enable = true;
@@ -108,6 +119,10 @@ in
         #flatpak install -y microsoft-edge
         #flatpak install -y app.openbubbles.OpenBubbles
         flatpak install -y geforce-infinity
+        flatpak install -y obs-studio
+        flatpak install -y com.github.tchx84.Flatseal
+        #flatpak install -y com.softfever.OrcaSlicer
+        #flatpak install -y ./OrcaSlicer-Linux-flatpak_V2.3.1_x86_64.flatpak
       '';
     };
     coredump.extraConfig = ''

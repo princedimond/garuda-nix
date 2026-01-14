@@ -43,7 +43,9 @@ in
   # Other Environment Configs
   environment.shellAliases = {
     fr = "nh os switch --hostname $hostname ~/garuda-nix/$hostname";
+    fb = "nh os boot --hostname $hostname ~/garuda-nix/$hostname";
     fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
+    fbu = "nh os boot --hostname $hostname ~/garuda-nix/$hostname --update";
     v = "nvim";
   };
 
@@ -90,8 +92,17 @@ in
     };
   */
 
-  programs.neovim.viAlias = true;
-  programs.neovim.vimAlias = true;
+  # Programs as modules for extra options
+  programs = {
+    neovim.viAlias = true;
+    neovim.vimAlias = true;
+    steam = {
+      enable = true;
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+      ];
+    };
+  };
 
   # Set your time zone.
   time.timeZone = vars.timeZone;
@@ -126,15 +137,8 @@ in
       ]);
   };
 
-  # Nix packages config unfree/allowed insecure packages
-  #nixpkgs.config.allowUnfree = true;
-  nixpkgs.config = {
-    allowUnFree = true;
-    permittedInsecurePackages = [
-      "libsoup-2.74.3"
-      "electron-35.7.5"
-    ];
-  };
+  # NOTE: nixpkgs. config is now set in flake.nix when creating the pkgs instance
+  # This is required when using the garuda.lib.garudaSystem with a custom pkgs
 
   # Import organized package lists
   # List packages installed in system profile. To search, run:
