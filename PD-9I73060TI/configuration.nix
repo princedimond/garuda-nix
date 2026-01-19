@@ -21,6 +21,17 @@ in
     ./packages/virtualisation.nix
   ];
 
+
+  # Boot/Kernel Options
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
+
+/*
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -28,6 +39,7 @@ in
   # Use stable kernel for better Nvidia driver compatibility
   # Latest kernel (6.18) has API incompatibilities with current Nvidia drivers
   boot.kernelPackages = pkgs.linuxPackages_latest;
+*/
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

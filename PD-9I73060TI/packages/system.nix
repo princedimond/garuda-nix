@@ -23,6 +23,8 @@
     apacheHttpd
     rar
     nh
+    cpu-x
+    cosmic-ext-tweaks
   ];
   # Development tools
   development = with pkgs; [
@@ -83,8 +85,8 @@
     imagemagick
     graphicsmagick-imagemagick-compat
     orca-slicer
-    freecad
-    freecad-wayland
+    #freecad
+    #freecad-wayland
     lunacy
     #obs-studio
     kdePackages.kdenlive
@@ -97,7 +99,7 @@
   # System utilities and file management
   utilities = with pkgs; [
     bitwarden-desktop
-    xfce.thunar
+    thunar
     gnome-disk-utility
     system-config-printer
     flatpak
