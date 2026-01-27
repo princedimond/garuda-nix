@@ -31,6 +31,7 @@
     nil
     #helix-gpt
     #evil-helix
+    bootstrap-studio
     nh
     onefetch
     inputs.nixvim.packages.x86_64-linux.default
@@ -75,6 +76,7 @@
   # System utilities and file management
   utilities = with pkgs; [
     bitwarden-desktop
+    bitwarden-cli
     xfce.thunar
     gnome-disk-utility
     system-config-printer

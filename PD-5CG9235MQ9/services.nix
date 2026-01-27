@@ -19,7 +19,20 @@ in
       packages = [
         #"com.microsoft.Edge"
         "com.mikrotik.WinBox"
+        "io.github.subhra74.Muon"
       ];
+    };
+
+    #install/enable cockpit
+    cockpit = {
+      enable = true;
+      port = 9090;
+      openFirewall = true;
+      package = pkgs.cockpit;
+    };
+
+    actual = {
+      package = pkgs.actual-server;
     };
 
     # Hardware services
@@ -49,6 +62,7 @@ in
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       #flatpak install -y microsoft-edge
+      flatpak install -y  WinBox
       flatpak install -y  WinBox
     '';
   };

@@ -31,7 +31,7 @@
     # git is already in system packages
     # gitui
     # gh # GitHub CLI
-    # lazygit
+    lazygit
     gitnuro
   ];
 
