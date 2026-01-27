@@ -23,6 +23,7 @@
     apacheHttpd
     rar
     nh
+    cmatrix
     cpu-x
     cosmic-ext-tweaks
   ];
@@ -85,14 +86,15 @@
     imagemagick
     graphicsmagick-imagemagick-compat
     orca-slicer
+    openscad
     #freecad
     #freecad-wayland
     lunacy
     #obs-studio
-    kdePackages.kdenlive
+    #kdePackages.kdenlive
     krita
     davinci-resolve
-    handbrake
+    #handbrake
     devede
   ];
 
@@ -102,6 +104,7 @@
     thunar
     gnome-disk-utility
     system-config-printer
+    naps2
     flatpak
     teamviewer
     warp-terminal
