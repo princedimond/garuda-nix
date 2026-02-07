@@ -26,6 +26,7 @@
     cmatrix
     cpu-x
     cosmic-ext-tweaks
+    nssTools
   ];
   # Development tools
   development = with pkgs; [
@@ -63,6 +64,7 @@
     anytype
     logseq
     joplin-desktop
+    notesnook
     evolution
     quassel
   ];

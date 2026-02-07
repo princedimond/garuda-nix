@@ -28,6 +28,7 @@
     zed-editor
     vscode
     meld
+    devtoolbox
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
