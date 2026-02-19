@@ -86,6 +86,8 @@
                 permittedInsecurePackages = [
                   "libsoup-2.74.3"
                   "electron-35.7.5"
+                  "ventoy-1.1.10"
+                  "ventoy-qt5-1.1.10"
                 ];
               };
             }

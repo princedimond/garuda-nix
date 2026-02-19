@@ -24,7 +24,7 @@
   editors = with pkgs; [
     # These are already in system.nix but you can move them here if preferred:
     evil-helix
-    helix-gpt
+    #helix-gpt
     zed-editor
     vscode
     meld

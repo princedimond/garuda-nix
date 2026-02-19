@@ -9,7 +9,7 @@
   core = with pkgs; [
     wget
     curl
-    filezilla
+    taxi
     windterm
     pciutils
     direnv
@@ -18,6 +18,7 @@
     btop
     htop
     glances
+    nvtopPackages.nvidia
     mission-center
     resources
     apacheHttpd
@@ -98,6 +99,7 @@
     davinci-resolve
     #handbrake
     devede
+    cheese
   ];
 
   # System utilities and file management
@@ -116,6 +118,8 @@
     spice-gtk
     spice-protocol
     hollywood
+    ventoy-full
+    ventoy-full-qt
     virtio-win
     win-spice
     czkawka-full
