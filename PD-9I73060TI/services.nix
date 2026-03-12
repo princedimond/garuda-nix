@@ -30,7 +30,7 @@ in
     flatpak = {
       enable = true;
       packages = [
-        #"com.microsoft.Edge"
+        "com.microsoft.Edge"
         #"app.openbubbles.OpenBubbles"
         "io.github.astralvixen.geforce-infinity"
         "com.obsproject.Studio"
@@ -117,10 +117,10 @@ in
       path = [ pkgs.flatpak ];
       script = ''
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        #flatpak install -y microsoft-edge
+        flatpak install -y microsoft-edge
         #flatpak install -y app.openbubbles.OpenBubbles
         flatpak install -y geforce-infinity
-        flatpak install -y obs-studio
+        flatpak install -y com.obsproject.Studio
         flatpak install -y com.github.tchx84.Flatseal
         #flatpak install -y com.softfever.OrcaSlicer
         #flatpak install -y ./OrcaSlicer-Linux-flatpak_V2.3.1_x86_64.flatpak

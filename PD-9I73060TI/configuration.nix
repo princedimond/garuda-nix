@@ -21,25 +21,34 @@ in
     ./packages/virtualisation.nix
   ];
 
-
   # Boot/Kernel Options
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
+    #kernelPackages = inputs.pkgs-linux-zen_6_18_9.linuxPackages_zen;
   };
 
-/*
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  #add secrets to use in the system (age.secrets is the type of secret we are workign with, center is the file name u want to specify as, and .file tells it the file to reference following the "=")
+  age.secrets.testsecret-PD-9I73060TI.file = ./secrets/testsecret.age;
+  #where to store the secret that gets decrypted on the system after a rebuild
+  #age.secrets.testsecret-PD-9I73060TI.path = "/home/princedimond/.ssh/testsecret-PD-9I73060TI.txt"; #for ssh keys in the .ssh folder
+  age.secrets.testsecret-PD-9I73060TI.path = "/etc/testsecret-PD-9I73060TI.txt"; # other secrets to be stored on the system for various purposes
+  #define owner of the secrets file
+  age.secrets.testsecret-PD-9I73060TI.owner = "princedimond";
 
-  # Use stable kernel for better Nvidia driver compatibility
-  # Latest kernel (6.18) has API incompatibilities with current Nvidia drivers
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-*/
+  /*
+    # Bootloader
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+
+    # Use stable kernel for better Nvidia driver compatibility
+    # Latest kernel (6.18) has API incompatibilities with current Nvidia drivers
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+  */
 
   networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -54,10 +63,10 @@ in
 
   # Other Environment Configs
   environment.shellAliases = {
-    fr = "nh os switch --hostname $hostname ~/garuda-nix/$hostname";
-    fb = "nh os boot --hostname $hostname ~/garuda-nix/$hostname";
-    fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
-    fbu = "nh os boot --hostname $hostname ~/garuda-nix/$hostname --update";
+    fr = "nh os switch --hostname $hostname path:$HOME/garuda-nix/$hostname";
+    fb = "nh os boot --hostname $hostname path:$HOME/garuda-nix/$hostname";
+    fu = "nh os switch --hostname $hostname path:$HOME/garuda-nix/$hostname --update";
+    fbu = "nh os boot --hostname $hostname path:$HOME/garuda-nix/$hostname --update";
     v = "nvim";
   };
 

@@ -3,7 +3,7 @@
   # Only enable either docker or podman -- Not both
   virtualisation = {
     libvirtd = {
-      enable = true;
+      enable = false;
       qemu = {
         swtpm.enable = true;
         #ovmf.enable = true;

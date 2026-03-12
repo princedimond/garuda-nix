@@ -10,6 +10,7 @@
     wget
     curl
     taxi
+    yazi
     windterm
     pciutils
     direnv
@@ -54,6 +55,7 @@
   productivity = with pkgs; [
     ferdium
     discord
+    #element-desktop
     thunderbird
     onlyoffice-desktopeditors
     kdePackages.calligra
@@ -73,7 +75,7 @@
   # VPN and networking
   networking = with pkgs; [
     #protonvpn-gui
-    microsoft-edge
+    #microsoft-edge
     expressvpn
     tailscale
     remmina
@@ -89,17 +91,18 @@
     imagemagick
     graphicsmagick-imagemagick-compat
     orca-slicer
-    openscad
+    #openscad
     #freecad
     #freecad-wayland
     lunacy
     #obs-studio
     #kdePackages.kdenlive
-    krita
+    #krita
     davinci-resolve
     #handbrake
     devede
     cheese
+    kooha
   ];
 
   # System utilities and file management
@@ -125,6 +128,7 @@
     czkawka-full
     xdg-desktop-portal
     xdg-desktop-portal-cosmic
+    inputs.agenix.packages.x86_64-linux.default
   ];
 
   # Gaming

@@ -29,7 +29,7 @@
     zed-editor
     vscode
     meld
-    devtoolbox
+    #devtoolbox
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -79,6 +79,7 @@
     # insomnia
     # curl # already in system
     # httpie
+    doppler
   ];
 
   # Documentation and notes
