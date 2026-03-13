@@ -9,7 +9,8 @@
   core = with pkgs; [
     wget
     curl
-    filezilla
+    taxi
+    yazi
     windterm
     pciutils
     direnv
@@ -18,6 +19,7 @@
     btop
     htop
     glances
+    nvtopPackages.nvidia
     mission-center
     resources
     apacheHttpd
@@ -26,6 +28,7 @@
     cmatrix
     cpu-x
     cosmic-ext-tweaks
+    nssTools
   ];
   # Development tools
   development = with pkgs; [
@@ -52,6 +55,7 @@
   productivity = with pkgs; [
     ferdium
     discord
+    #element-desktop
     thunderbird
     onlyoffice-desktopeditors
     kdePackages.calligra
@@ -63,6 +67,7 @@
     anytype
     logseq
     joplin-desktop
+    notesnook
     evolution
     quassel
   ];
@@ -70,7 +75,7 @@
   # VPN and networking
   networking = with pkgs; [
     #protonvpn-gui
-    microsoft-edge
+    #microsoft-edge
     expressvpn
     tailscale
     remmina
@@ -86,16 +91,18 @@
     imagemagick
     graphicsmagick-imagemagick-compat
     orca-slicer
-    openscad
+    #openscad
     #freecad
     #freecad-wayland
     lunacy
     #obs-studio
     #kdePackages.kdenlive
-    krita
+    #krita
     davinci-resolve
     #handbrake
     devede
+    cheese
+    kooha
   ];
 
   # System utilities and file management
@@ -114,11 +121,14 @@
     spice-gtk
     spice-protocol
     hollywood
+    ventoy-full
+    ventoy-full-qt
     virtio-win
     win-spice
     czkawka-full
     xdg-desktop-portal
     xdg-desktop-portal-cosmic
+    inputs.agenix.packages.x86_64-linux.default
   ];
 
   # Gaming

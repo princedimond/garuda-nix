@@ -24,10 +24,12 @@
   editors = with pkgs; [
     # These are already in system.nix but you can move them here if preferred:
     evil-helix
-    helix-gpt
+    github-copilot-cli
+    #helix-gpt
     zed-editor
     vscode
     meld
+    #devtoolbox
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -77,6 +79,7 @@
     # insomnia
     # curl # already in system
     # httpie
+    doppler
   ];
 
   # Documentation and notes
