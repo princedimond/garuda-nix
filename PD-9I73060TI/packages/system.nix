@@ -25,10 +25,14 @@
     apacheHttpd
     rar
     nh
+    dmidecode
     cmatrix
     cpu-x
     cosmic-ext-tweaks
     nssTools
+    lshw
+    dut
+    duc
   ];
   # Development tools
   development = with pkgs; [
@@ -67,15 +71,16 @@
     anytype
     logseq
     joplin-desktop
+    kdePackages.marknote
     notesnook
-    evolution
-    quassel
+    kdePackages.konversation
+    zoom-us
   ];
 
   # VPN and networking
   networking = with pkgs; [
     #protonvpn-gui
-    #microsoft-edge
+    microsoft-edge
     expressvpn
     tailscale
     remmina
@@ -83,6 +88,7 @@
     wireguard-tools
     deluge
     winbox4
+    waynergy
   ];
 
   # Media and graphics
@@ -91,7 +97,7 @@
     imagemagick
     graphicsmagick-imagemagick-compat
     orca-slicer
-    #openscad
+    openscad
     #freecad
     #freecad-wayland
     lunacy
@@ -128,6 +134,8 @@
     czkawka-full
     xdg-desktop-portal
     xdg-desktop-portal-cosmic
+    wl-clipboard
+    rpi-imager
     inputs.agenix.packages.x86_64-linux.default
   ];
 

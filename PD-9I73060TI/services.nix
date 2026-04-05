@@ -30,7 +30,7 @@ in
     flatpak = {
       enable = true;
       packages = [
-        "com.microsoft.Edge"
+        #"com.microsoft.Edge"
         #"app.openbubbles.OpenBubbles"
         "io.github.astralvixen.geforce-infinity"
         "com.obsproject.Studio"
@@ -39,10 +39,18 @@ in
         #"com.softfever.OrcaSlicer"
       ];
     };
-    # Enable (make available) Cosmic Desktop Environment
+
+    # Enable (make available) Choice of Desktop Environment (X11)
+    xserver = {
+      enable = true;
+      displayManager.lightdm.enable = true;
+      desktopManager.cinnamon.enable = true;
+      #desktopManager.pantheon.enable = true;
+    };
+
+    # Enable (make available) Choice of Desktop Environment (WAYLAND)
     desktopManager = {
       cosmic.enable = true;
-      #pantheon.enable = true;
     };
 
     # VPN and networking services
@@ -117,7 +125,7 @@ in
       path = [ pkgs.flatpak ];
       script = ''
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        flatpak install -y microsoft-edge
+        #flatpak install -y microsoft-edge
         #flatpak install -y app.openbubbles.OpenBubbles
         flatpak install -y geforce-infinity
         flatpak install -y com.obsproject.Studio
