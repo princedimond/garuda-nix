@@ -71,6 +71,7 @@
     graphicsmagick-imagemagick-compat
     orca-slicer
     lunacy
+    ani-cli
   ];
 
   # System utilities and file management

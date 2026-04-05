@@ -22,7 +22,6 @@
   editors = with pkgs; [
     # These are already in system.nix but you can move them here if preferred:
     vscode
-    helix-gpt
     evil-helix
   ];
 
@@ -30,7 +29,7 @@
   vcs = with pkgs; [
     # git is already in system packages
     # gitui
-    # gh # GitHub CLI
+     gh # GitHub CLI
     lazygit
     gitnuro
   ];
