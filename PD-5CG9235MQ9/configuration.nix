@@ -6,6 +6,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -46,6 +47,9 @@ in
     fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
     v = "nvim";
   };
+
+  #make evil helix dfault shell editor
+  environment.variables.EDITOR = lib.mkForce "hx";
 
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];

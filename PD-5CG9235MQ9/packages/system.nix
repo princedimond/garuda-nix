@@ -80,7 +80,7 @@
   utilities = with pkgs; [
     bitwarden-desktop
     bitwarden-cli
-    xfce.thunar
+    thunar
     gnome-disk-utility
     system-config-printer
     flatpak
@@ -91,6 +91,7 @@
     xrdp
     lynis
     chirp
+    yazi
   ];
 
   # Printing support
