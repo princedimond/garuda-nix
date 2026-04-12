@@ -19,6 +19,7 @@
     tmux
     rpi-imager
     czkawka-full
+    dmidecode
   ];
 
   # Development tools
@@ -46,9 +47,10 @@
     onlyoffice-desktopeditors
     joplin-desktop
     affine
-    #anytype
+    anytype
     logseq
     evolution
+    stirling-pdf-desktop
   ];
 
   # VPN and networking
