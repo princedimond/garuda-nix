@@ -36,7 +36,7 @@ in
         "com.obsproject.Studio"
         "com.github.tchx84.Flatseal"
         "io.github.subhra74.Muon"
-        #"com.softfever.OrcaSlicer"
+        "com.orcaslicer.OrcaSlicer"
       ];
     };
 
@@ -130,7 +130,7 @@ in
         flatpak install -y geforce-infinity
         flatpak install -y com.obsproject.Studio
         flatpak install -y com.github.tchx84.Flatseal
-        #flatpak install -y com.softfever.OrcaSlicer
+        flatpak install -y com.orcaslicer.OrcaSlicer
         #flatpak install -y ./OrcaSlicer-Linux-flatpak_V2.3.1_x86_64.flatpak
         flatpak install -7 io.github.subhra74.Muon
       '';

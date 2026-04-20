@@ -10,7 +10,7 @@
   imports = [
     #./plasma.nix
     ./evil-helix.nix
-    ./japanese.nix
+    #./japanese.nix
   ];
 
   /*

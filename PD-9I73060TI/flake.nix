@@ -34,6 +34,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Star Citizen via nix-citizen https://github.com/LovingMelody/nix-citizen
+    nix-citizen.url = "github:LovingMelody/nix-citizen";
+    #Optional - updates underlying wihtout waiting for nix-citizen to update
+    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-citizen.inputs.nix-gaming.follows = "nix-gaming";
+    
+
   };
 
   outputs =
@@ -48,6 +55,7 @@
       nix-flatpak,
       flake-utils,
       agenix,
+      nix-citizen,
       ...
     }:
     let
@@ -87,6 +95,30 @@
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
             agenix.nixosModules.default
+            nix-citizen.nixosModules.default
+            {
+              #cachix setup
+              nix.settings = {
+                substituters = ["https://nix-citizen.cachix.org"];
+                trusted-public-keys = ["nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="];
+              };
+              programs.rsi-launcher = {
+                #enables star citizen module
+                enable = true;
+                # additional commands before the game starts
+                preCommands = ''
+                  export DXVK_HUD=compiler;
+                  export MANGO_HUD=1;
+                '';
+              # # This option is enabled by default
+              # #  Configures your system to meet some of the requirements to run star-citizen
+              # # Set `vm.max_map_count` default to `16777216` (sysctl(8))
+              # #Set `fs.file-max` default to `524288` (sysctl(8))
+              # #Also sets `security.pam.loginLimits` to increase hard (limits.conf(5))
+              # # Changes outlined in  https://github.com/starcitizen-lug/knowledge-base/wiki/Manual-Installation#prerequisites
+              # setLimits = false;
+              };
+            }
             #home-manager.nixosModules.home-manager
             {
               #nixpkgs.overlays = [ overlay ];

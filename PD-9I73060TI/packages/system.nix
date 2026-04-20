@@ -64,6 +64,7 @@
     onlyoffice-desktopeditors
     kdePackages.calligra
     libreoffice-qt-fresh
+    stirling-pdf-desktop
     freeplane
     dia
     yed
@@ -101,11 +102,11 @@
     #freecad
     #freecad-wayland
     lunacy
-    #obs-studio
+    obs-studio
     #kdePackages.kdenlive
-    #krita
+    krita
     davinci-resolve
-    #handbrake
+    handbrake
     devede
     cheese
     kooha
@@ -148,6 +149,8 @@
     nvidia-system-monitor-qt
     protonup-ng
     protonup-qt
+    star-citizen
+    #inputs.nix-citizen.packages.${system}.rsi-launcher
   ];
 
   # Printing support

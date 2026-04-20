@@ -70,6 +70,11 @@ in
     v = "nvim";
   };
 
+  #Environment Variables
+  environment.variables = {
+    EDITOR = pkgs.lib.mkForce "hx";
+  };
+
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
