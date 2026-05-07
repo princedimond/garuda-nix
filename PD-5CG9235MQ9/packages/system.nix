@@ -33,8 +33,10 @@
     #helix-gpt
     #evil-helix
     bootstrap-studio
+    python3
     nh
     onefetch
+    github-copilot-cli
     inputs.nixvim.packages.x86_64-linux.default
   ];
 

@@ -4,7 +4,7 @@
   # Programming languages and runtimes
   languages = with pkgs; [
     # Uncomment and add languages you need
-    # python3
+     python3
     # python311Packages.pip
     # nodejs
     # nodePackages.npm
@@ -69,6 +69,7 @@
     # insomnia
     # curl # already in system
     # httpie
+    #github-copilot-cli
   ];
 
   # Documentation and notes
