@@ -120,6 +120,9 @@ in
 
   # Programs as modules for extra options
   programs = {
+    appimage = {
+      enable =true;
+    };
     neovim.viAlias = true;
     neovim.vimAlias = true;
     steam = {
@@ -150,7 +153,7 @@ in
       "input"
       "video"
       "seat"
-      "japanese"
+      #"japanese"
     ];
     packages =
       let

@@ -11,6 +11,7 @@
     curl
     taxi
     yazi
+    mesa-demos
     windterm
     pciutils
     direnv
@@ -33,6 +34,7 @@
     lshw
     dut
     duc
+    libevdev
   ];
   # Development tools
   development = with pkgs; [
@@ -137,6 +139,7 @@
     xdg-desktop-portal-cosmic
     wl-clipboard
     rpi-imager
+    appimage-run
     inputs.agenix.packages.x86_64-linux.default
   ];
 
