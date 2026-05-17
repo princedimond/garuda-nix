@@ -27,8 +27,8 @@ in
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    #kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_zen;
     #kernelPackages = inputs.pkgs-linux-zen_6_18_9.linuxPackages_zen;
   };
 

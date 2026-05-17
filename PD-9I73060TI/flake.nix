@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:Nixos/nixpkgs/nixos-unstable";
-    nixpkgs-linux-zen_6_18_9.url = "github:Nixos/nixpkgs/80d901ec0377e19ac3f7bb8c035201e2e098cc97";
+    #nixpkgs-linux-zen_6_18_9.url = "github:Nixos/nixpkgs/80d901ec0377e19ac3f7bb8c035201e2e098cc97";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     nixvim.url = "github:dc-tec/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";

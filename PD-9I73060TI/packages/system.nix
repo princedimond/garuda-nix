@@ -78,6 +78,7 @@
     notesnook
     kdePackages.konversation
     zoom-us
+    hubstaff
   ];
 
   # VPN and networking
