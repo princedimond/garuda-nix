@@ -87,6 +87,17 @@ in
 
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
+  programs.kdeconnect.enable = true;
+  services.samba.enable = true;
+  services.samba.shares = {};
+  services.samba.shares.public = {
+    path = "/run/media/princedimond/d43fa77b-0e35-4e62-8cfa-350162d7ed73/Backups/Chris";
+    browseable = "yes";
+    writeable = "yes";
+    guest_ok = "yes";
+    create_mask = "0644";
+    directory_mask = "0755";
+  };
 
   # Set your time zone.
   time.timeZone = vars.timeZone;

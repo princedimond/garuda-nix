@@ -18,6 +18,7 @@
     rar
     microsoft-edge
     resources
+    kdePackages.kdenetwork-filesharing
   ];
 
   # Development tools
@@ -30,7 +31,6 @@
     meld
     nixd
     nil
-    helix-gpt
     evil-helix
     nh
     onefetch
@@ -60,6 +60,7 @@
     putty
     windterm
     winbox4
+    filezilla
   ];
 
   # Media and graphics
@@ -91,6 +92,13 @@
     win-spice
     rpi-imager
     input-leap
+    cockpit
+    sscg
+    taxi
+    #cockpit-files
+    #cockpit-zfs
+    #cockpit-podman
+    #cockpit-machines
   ];
 
   # Printing support

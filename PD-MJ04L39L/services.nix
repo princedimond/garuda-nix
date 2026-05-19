@@ -1,5 +1,5 @@
 # Services configuration
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   vars = import ./variables.nix;
@@ -13,6 +13,34 @@ in
       layout = vars.keyboard.layout;
       variant = vars.keyboard.variant;
     };
+    samba = {
+      enable = true;
+      openFirewall = true;
+      /*
+      settings = ''
+      workgroup = WORKGROUP
+      server string = NixOS Samba Server
+      map to guest = Bad User
+    '';
+    */
+    };
+    #samba-wssd.enable = true;
+    cockpit = {
+      enable = true;
+      /*
+      plugins = [
+        pkgs.cockpit-files
+        pkgs.cockpit-zfs
+        pkgs.cockpit-podman
+        pkgs.cockpit-machines
+      ];
+      */
+      openFirewall = true;
+      port = 9090;
+      settings.webService.allowUnencrypted = true;
+    };
+
+
 
     # Flatpak service and packages
     flatpak = {
@@ -35,8 +63,11 @@ in
     # Remote access
     teamviewer.enable = true;
 
+    # Enable Input from keyboard and mouse on wayland
+    libinput.enable = true;
+
     # Enable the OpenSSH daemon (currently commented out)
-    # openssh.enable = true;
+     openssh.enable = true;
   };
 
   # Custom Enables
@@ -45,6 +76,9 @@ in
   };
 
   # Custom systemd services
+  systemd.services.cockpit = {
+    environment.PATH = lib.mkDefault "${pkgs.cockpit}/libexec:${pkgs.sscg}/bin:${pkgs.coreutils}/bin";
+  };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
