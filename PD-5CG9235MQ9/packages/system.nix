@@ -57,7 +57,7 @@
 
   # VPN and networking
   networking = with pkgs; [
-    protonvpn-gui
+    proton-vpn
     expressvpn
     tailscale
     input-leap
