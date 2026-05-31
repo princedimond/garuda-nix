@@ -80,7 +80,6 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
       enable = true;
     };
   };
