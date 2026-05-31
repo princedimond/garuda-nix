@@ -178,7 +178,7 @@
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
-    open-webui
+    #open-webui
     lmstudio
     solaar
   ];
