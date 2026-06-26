@@ -129,6 +129,8 @@
                   "electron-35.7.5"
                   "ventoy-1.1.12"
                   "ventoy-qt5-1.1.12"
+                  "electron-39.8.10"
+                  
                 ];
               };
             }

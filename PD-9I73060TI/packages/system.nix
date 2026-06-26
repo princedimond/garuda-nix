@@ -77,6 +77,7 @@
     kdePackages.marknote
     notesnook
     kdePackages.konversation
+    quasselClient
     zoom-us
     hubstaff
   ];
