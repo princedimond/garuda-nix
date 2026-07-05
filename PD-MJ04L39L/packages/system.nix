@@ -34,6 +34,10 @@
     evil-helix
     nh
     onefetch
+    lazygit
+    gh
+    glab
+    github-copilot-cli
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -45,7 +49,7 @@
     onlyoffice-desktopeditors
     affine
     anytype
-    logseq
+    #logseq
     evolution
   ];
 
@@ -76,7 +80,7 @@
   # System utilities and file management
   utilities = with pkgs; [
     bitwarden-desktop
-    xfce.thunar
+    thunar
     gnome-disk-utility
     system-config-printer
     flatpak
@@ -95,6 +99,9 @@
     cockpit
     sscg
     taxi
+    solaar
+    logitech-udev-rules
+    yazi
     #cockpit-files
     #cockpit-zfs
     #cockpit-podman
@@ -117,8 +124,8 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
+    #inputs.zen-browser.packages.x86_64-linux.specific
+    #inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed

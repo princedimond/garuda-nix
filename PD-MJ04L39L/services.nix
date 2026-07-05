@@ -47,6 +47,7 @@ in
       enable = true;
       packages = [
         #"com.microsoft.Edge"
+        "io.anytype.anytype"
       ];
     };
 
@@ -84,6 +85,7 @@ in
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       # flatpak install -y microsoft-edge
+       flatpak install -y io.anytype.anytype
     '';
   };
 }

@@ -4,6 +4,7 @@
 
 {
   config,
+  lib,
   pkgs,
   inputs,
   ...
@@ -19,6 +20,8 @@ in
     # Services configuration
     ./services.nix
     ./packages/virtualisation.nix
+    #./mesh-central.nix
+    #./cachemap.nix
   ];
 
   # Bootloader.
@@ -50,6 +53,9 @@ in
     fu = "nh os switch --hostname $hostname ~/garuda-nix/$hostname --update";
     v = "nvim";
   };
+  environment.variables = {
+    EDITOR = lib.mkForce "hx";
+  };
 
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -66,7 +72,7 @@ in
       #trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
     gc = {
-      automatic = true;
+      automatic = false;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
@@ -87,6 +93,7 @@ in
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
   programs.kdeconnect.enable = true;
+  /*
   services.samba.enable = true;
   services.samba.shares = {};
   services.samba.shares.public = {
@@ -97,6 +104,10 @@ in
     create_mask = "0644";
     directory_mask = "0755";
   };
+  */
+
+  # Enable Logitech Hardare
+  hardware.logitech.wireless.enable = true;
 
   # Set your time zone.
   time.timeZone = vars.timeZone;
@@ -135,6 +146,7 @@ in
     permittedInsecurePackages = [
       "libsoup-2.74.3"
       "electron-35.7.5"
+      "electron-39.8.10"
     ];
   };
 
