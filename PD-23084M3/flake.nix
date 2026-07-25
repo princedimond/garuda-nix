@@ -1,17 +1,20 @@
 {
   description = "Garuda-NIX";
 
-  nixConfig.extra-substituters = [
-    "https://nyx.chaotic.cx"
-  ];
+  /*
+    nixConfig.extra-substituters = [
+      "https://nyx.chaotic.cx"
+    ];
 
-  nixConfig.extra-trusted-public-keys = [
-    "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-    "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-  ];
+    nixConfig.extra-trusted-public-keys = [
+      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+    ];
+  */
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     nixvim.url = "github:dc-tec/nixvim";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
@@ -39,6 +42,7 @@
       plasma-manager,
       zen-browser,
       nix-flatpak,
+      nixos-hardware,
       ...
     }:
     let
@@ -56,6 +60,7 @@
           };
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
+            nixos-hardware.nixosModules.dell-latitude-7420
             #home-manager.nixosModules.home-manager
             ./configuration.nix
           ];

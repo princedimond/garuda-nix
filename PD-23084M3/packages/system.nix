@@ -27,10 +27,12 @@
     meld
     nixd
     nil
-    helix-gpt
+    #helix-gpt
     evil-helix
     nh
     onefetch
+    gh
+    lazygit
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -41,8 +43,8 @@
     thunderbird
     onlyoffice-desktopeditors
     affine
-    anytype
-    logseq
+    #anytype
+    #logseq
     evolution
   ];
 
@@ -54,6 +56,7 @@
     remmina
     wireguard-ui
     wireguard-tools
+    winbox4
   ];
 
   # Media and graphics

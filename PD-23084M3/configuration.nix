@@ -71,7 +71,7 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
+      #cachyos-kernel = true;
       enable = true;
     };
   };
@@ -115,6 +115,7 @@ in
     permittedInsecurePackages = [
       "libsoup-2.74.3"
       "electron-35.7.5"
+      "electron-39.8.10"
     ];
   };
 
