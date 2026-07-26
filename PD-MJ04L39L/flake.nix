@@ -13,7 +13,7 @@
   */
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     nixvim.url = "github:dc-tec/nixvim";
     zen-browser = {

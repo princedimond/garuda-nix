@@ -6,6 +6,13 @@
 }:
 
 {
+
+  imports = [
+    #./plasma.nix
+    ./evil-helix.nix
+    ./japanese.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #home.userName = vars.userName;

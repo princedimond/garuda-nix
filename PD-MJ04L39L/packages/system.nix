@@ -38,6 +38,7 @@
     gh
     glab
     github-copilot-cli
+    anki
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -48,9 +49,11 @@
     thunderbird
     onlyoffice-desktopeditors
     affine
-    anytype
+    #anytype
     #logseq
     evolution
+    appflowy
+    siyuan
   ];
 
   # VPN and networking
@@ -73,7 +76,7 @@
     gthumb
     imagemagick
     graphicsmagick-imagemagick-compat
-    #orca-slicer
+    orca-slicer
     lunacy
   ];
 
