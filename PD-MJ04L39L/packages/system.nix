@@ -49,7 +49,7 @@
     thunderbird
     onlyoffice-desktopeditors
     affine
-    #anytype
+    anytype
     #logseq
     evolution
     appflowy
