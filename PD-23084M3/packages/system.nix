@@ -11,7 +11,7 @@
     fastfetch
     btop
     htop
-    glances
+    #glances
     mission-center
     apacheHttpd
     rar
@@ -104,8 +104,8 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
+    #inputs.zen-browser.packages.x86_64-linux.specific
+    #inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed

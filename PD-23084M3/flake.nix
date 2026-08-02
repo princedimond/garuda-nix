@@ -17,7 +17,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     nixvim.url = "github:dc-tec/nixvim";
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
