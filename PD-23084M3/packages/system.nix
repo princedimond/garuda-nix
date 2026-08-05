@@ -11,7 +11,7 @@
     fastfetch
     btop
     htop
-    glances
+    #glances
     mission-center
     apacheHttpd
     rar
@@ -27,10 +27,12 @@
     meld
     nixd
     nil
-    helix-gpt
+    #helix-gpt
     evil-helix
     nh
     onefetch
+    gh
+    lazygit
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -41,8 +43,8 @@
     thunderbird
     onlyoffice-desktopeditors
     affine
-    anytype
-    logseq
+    #anytype
+    #logseq
     evolution
   ];
 
@@ -54,6 +56,7 @@
     remmina
     wireguard-ui
     wireguard-tools
+    winbox4
   ];
 
   # Media and graphics
@@ -101,8 +104,8 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
+    #inputs.zen-browser.packages.x86_64-linux.specific
+    #inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed
