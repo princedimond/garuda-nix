@@ -19,7 +19,7 @@
     microfetch
     btop
     htop
-    glances
+    #glances
     nvtopPackages.nvidia
     mission-center
     resources
@@ -64,15 +64,15 @@
     #element-desktop
     thunderbird
     onlyoffice-desktopeditors
-    kdePackages.calligra
+    #kdePackages.calligra
     libreoffice-qt-fresh
     stirling-pdf-desktop
     freeplane
-    dia
+    #nputs.nixpkgs-unstable.dia
     yed
     affine
     anytype
-    logseq
+    #logseq
     joplin-desktop
     kdePackages.marknote
     notesnook
@@ -94,6 +94,8 @@
     deluge
     winbox4
     waynergy
+    gns3-gui
+    gns3-server
   ];
 
   # Media and graphics

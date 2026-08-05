@@ -2,13 +2,14 @@
   description = "Garuda-NIX";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:Nixos/nixpkgs/nixos-unstable";
     #nixpkgs-linux-zen_6_18_9.url = "github:Nixos/nixpkgs/80d901ec0377e19ac3f7bb8c035201e2e098cc97";
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     nixvim.url = "github:dc-tec/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     flake-utils.url = "github:numtide/flake-utils";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
