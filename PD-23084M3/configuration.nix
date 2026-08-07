@@ -42,6 +42,19 @@ in
   networking.networkmanager.enable = true;
   networking.wireguard.enable = true;
 
+  # Other Environment Configs
+  environment.shellAliases = {
+    fr = "nh os switch --hostname $hostname path:$HOME/garuda-nix/$hostname";
+    fb = "nh os boot --hostname $hostname path:$HOME/garuda-nix/$hostname";
+    fu = "nh os switch --hostname $hostname path:$HOME/garuda-nix/$hostname --update";
+    fbu = "nh os boot --hostname $hostname path:$HOME/garuda-nix/$hostname --update";
+    v = "nvim";
+  };
+
+  environment.variables = {
+  EDITOR = pkgs.lib.mkForce "hx";
+  };
+
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

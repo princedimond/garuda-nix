@@ -6,6 +6,10 @@
 }:
 
 {
+
+  imports = [
+    ./evil-helix.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #home.userName = vars.userName;
@@ -87,7 +91,7 @@
     userEmail = "princedimond@gmail.com";
   };
   home.sessionVariables = {
-    # EDITOR = "emacs";
+     EDITOR = "hx";
   };
 
   # Let Home Manager install and manage itself.
