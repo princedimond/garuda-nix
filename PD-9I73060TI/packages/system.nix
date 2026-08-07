@@ -72,6 +72,7 @@
     yed
     affine
     anytype
+    siyuan
     #logseq
     joplin-desktop
     kdePackages.marknote
@@ -84,7 +85,7 @@
 
   # VPN and networking
   networking = with pkgs; [
-    #protonvpn-gui
+    proton-vpn
     microsoft-edge
     expressvpn
     tailscale
