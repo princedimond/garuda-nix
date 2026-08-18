@@ -2,6 +2,7 @@
   config,
   pkgs,
   vars,
+  inputs,
   ...
 }:
 
@@ -9,47 +10,58 @@
 
   imports = [
     ./evil-helix.nix
+    ./gtk.nix
+    #inputs.catppuccin.homeModules.catppuccin
+    #./home.nix
+    #./japanese.nix
   ];
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  #home.userName = vars.userName;
-  #home.homeDirectory = vars.homeDirectory;
+  home.username = "princedimond";
+  home.homeDirectory = "/home/princedimond";
+  #home.stateVersion = "25.11";
+  home.pointerCursor.enable = true;
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+    settings = {
+      user.name = "princedimond";
+      user.email = "princedimond@gmail.com";
+      credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
+    };
+  };
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+  # ─────────────────────────────────────────────
+  # Niri Configuration Deployment
+  # Deploys to: ~/.config/niri/
+  # ─────────────────────────────────────────────
+  xdg.configFile."niri/config.kdl".source = ./config.kdl;
+  xdg.configFile."niri/noctalia.kdl".source = ./noctalia.kdl;
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages =
-    let
-      userPkgs = import (./packages/user.nix) { inherit pkgs; };
-      devPkgs = import (./packages/development.nix) { inherit pkgs; };
-    in
-    # Flatten user package categories (uncomment categories you want to enable)
-    # userPkgs.development ++
-    # userPkgs.utilities ++
-    # userPkgs.media ++
-    # userPkgs.productivity ++
-    # userPkgs.shell ++
+  # ─────────────────────────────────────────────
+  # Noctalia Configuration Deployment
+  # Deploys to: ~/.config/noctalia/
+  # ─────────────────────────────────────────────
+  xdg.configFile."noctalia/config.toml".source = ./noctalia-config.toml;
 
-    # Development packages for user environment (uncomment categories you want)
-    # devPkgs.languages ++
-    # devPkgs.vcs ++
-    # devPkgs.api ++
-    # devPkgs.docs ++
+  # ─────────────────────────────────────────────
+  # Wallpaper & Icon Files
+  # Deployed to: ~/garuda-nix/PD-23084M3/Wallpapers/
+  # Referenced by niri config.kdl and noctalia-config.toml
+  # via ~/garuda-nix/PD-23084M3/Wallpapers/... paths
+  # ─────────────────────────────────────────────
+  home.file."garuda-nix/PD-23084M3/Wallpapers/Logo-transparant.png".source = ./Wallpapers/Logo-transparant.png;
+  home.file."garuda-nix/PD-23084M3/Wallpapers/favicon.png".source = ./Wallpapers/favicon.png;
 
-    # Custom packages can still be added directly here
-    (with pkgs; [
-      # Add any one-off packages here
-      # pkgs.hello
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    ]);
+  # Catppuccin Config
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+    flavor = "mocha";
+    accent = "green";
+    cursors.enable = true;
+    zed.enable = true;
+    thunderbird.enable = true;
+    nvim.enable = true;
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -66,32 +78,15 @@
     # '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/princedimond/etc/profile.d/hm-session-vars.sh
-  #
-
-  # Git Options
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-    userName = "princedimond";
-    userEmail = "princedimond@gmail.com";
-  };
-  home.sessionVariables = {
-     EDITOR = "hx";
+  #enable catppuccin theme for these applications
+  programs = {
+    btop.enable = true;
+    lazygit.enable = true;
+    yazi.enable = true;
+    television = {
+      enable = true;
+      enableBashIntegration = true;
+    };
   };
 
   # Let Home Manager install and manage itself.

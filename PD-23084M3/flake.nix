@@ -26,8 +26,21 @@
         home-manager.follows = "home-manager";
       };
     };
+    /*
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    */
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }; catppuccin = {
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -43,6 +56,9 @@
       zen-browser,
       nix-flatpak,
       nixos-hardware,
+      catppuccin,
+      noctalia,
+      niri,
       ...
     }:
     let
@@ -61,8 +77,40 @@
           modules = [
             nix-flatpak.nixosModules.nix-flatpak
             nixos-hardware.nixosModules.dell-latitude-7420
-            #home-manager.nixosModules.home-manager
             ./configuration.nix
+            #home-manager.nixosModules.home-manager
+            inputs.niri.nixosModules.niri
+            inputs.noctalia.nixosModules.default
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = false;
+                  users.${vars.userName} = {
+                    imports = [
+                     ./home.nix
+                    inputs.catppuccin.homeModules.catppuccin
+                    ];
+                  };
+                  extraSpecialArgs = { inherit vars inputs; };
+                #backupFileExtension = "backup";
+                };
+              }
+            /*
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.princedimond = {
+                  imports = [
+                    ./home.nix
+                    #cosmic-manager.homeManagerModules.cosmic-manager
+                    inputs.catppuccin.homeModules.catppuccin
+                  ];
+                };
+                backupFileExtension = "backup";
+              };
+            }
+            */
           ];
         };
       };

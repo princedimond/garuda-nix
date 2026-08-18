@@ -15,6 +15,7 @@
     mission-center
     apacheHttpd
     rar
+    yazi
   ];
 
   # Development tools
@@ -72,7 +73,7 @@
   # System utilities and file management
   utilities = with pkgs; [
     bitwarden-desktop
-    xfce.thunar
+    thunar
     gnome-disk-utility
     system-config-printer
     flatpak
