@@ -191,6 +191,26 @@ in
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
 
+   xdg.portal = {
+    enable = true;
+    config = {
+      common = {
+        default = [
+          #"cosmic"
+          "gtk"
+        ];
+        # Use wlr for RemoteDesktop and ScreenCast
+        #"org.freedesktop.impl.portal.RemoteDesktop" = "wlr";
+        #"org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      };
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      #pkgs.xdg-desktop-portal-cosmic
+      #pkgs.xdg-desktop-portal-wlr
+    ];
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

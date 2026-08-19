@@ -95,22 +95,6 @@
                 #backupFileExtension = "backup";
                 };
               }
-            /*
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.princedimond = {
-                  imports = [
-                    ./home.nix
-                    #cosmic-manager.homeManagerModules.cosmic-manager
-                    inputs.catppuccin.homeModules.catppuccin
-                  ];
-                };
-                backupFileExtension = "backup";
-              };
-            }
-            */
           ];
         };
       };

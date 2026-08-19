@@ -16,6 +16,7 @@
     apacheHttpd
     rar
     yazi
+    xwayland-satellite
   ];
 
   # Development tools
@@ -44,7 +45,8 @@
     thunderbird
     onlyoffice-desktopeditors
     affine
-    #anytype
+    anytype
+    anytype-heart
     #logseq
     evolution
   ];

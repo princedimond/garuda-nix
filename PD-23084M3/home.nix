@@ -3,6 +3,7 @@
   pkgs,
   vars,
   inputs,
+  lib,
   ...
 }:
 
