@@ -49,6 +49,7 @@
     anytype-heart
     #logseq
     evolution
+    stirling-pdf-desktop
   ];
 
   # VPN and networking
