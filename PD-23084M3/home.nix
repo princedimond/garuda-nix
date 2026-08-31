@@ -12,6 +12,7 @@
   imports = [
     ./evil-helix.nix
     ./gtk.nix
+   inputs.noctalia-appmenu.homeManagerModules.default
     #inputs.catppuccin.homeModules.catppuccin
     #./home.nix
     #./japanese.nix
@@ -28,6 +29,12 @@
       user.email = "princedimond@gmail.com";
       credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
     };
+  };
+  programs.noctalia.plugins.appmenu = {
+    enable = true;
+    # `registrar` is deprecated in v1.0.0 — the AT-SPI substrate
+    # does not use it. The option is recognised for one cycle
+    # so existing configs do not break; it is removed in v1.1.
   };
 
   # ─────────────────────────────────────────────

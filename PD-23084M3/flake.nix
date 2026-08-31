@@ -19,6 +19,7 @@
     nixvim.url = "github:dc-tec/nixvim";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    noctalia-appmenu.url = "github:yolo-labz/noctalia-appmenu";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs = {
@@ -27,10 +28,10 @@
       };
     };
     /*
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+      home-manager = {
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
     */
     noctalia = {
       url = "github:noctalia-dev/noctalia";
@@ -39,7 +40,8 @@
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; catppuccin = {
+    };
+    catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -57,6 +59,7 @@
       nix-flatpak,
       nixos-hardware,
       catppuccin,
+      noctalia-appmenu,
       noctalia,
       niri,
       ...
@@ -81,20 +84,20 @@
             #home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
             inputs.noctalia.nixosModules.default
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = false;
-                  users.${vars.userName} = {
-                    imports = [
-                     ./home.nix
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = false;
+                users.${vars.userName} = {
+                  imports = [
+                    ./home.nix
                     inputs.catppuccin.homeModules.catppuccin
-                    ];
-                  };
-                  extraSpecialArgs = { inherit vars inputs; };
-                #backupFileExtension = "backup";
+                  ];
                 };
-              }
+                extraSpecialArgs = { inherit vars inputs; };
+                #backupFileExtension = "backup";
+              };
+            }
           ];
         };
       };

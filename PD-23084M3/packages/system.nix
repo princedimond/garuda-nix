@@ -10,6 +10,7 @@
     direnv
     fastfetch
     btop
+    bottom
     htop
     #glances
     mission-center
@@ -17,6 +18,9 @@
     rar
     yazi
     xwayland-satellite
+    quickshell
+    owofetch
+    freshfetch
   ];
 
   # Development tools
