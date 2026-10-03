@@ -21,7 +21,6 @@
     htop
     #glances
     nvtopPackages.nvidia
-    mission-center
     resources
     apacheHttpd
     rar
@@ -35,6 +34,9 @@
     dut
     duc
     libevdev
+    libimobiledevice
+    libimobiledevice-glue
+    ifuse
   ];
   # Development tools
   development = with pkgs; [
@@ -65,7 +67,7 @@
     thunderbird
     onlyoffice-desktopeditors
     #kdePackages.calligra
-    libreoffice-qt-fresh
+    libreoffice-qt
     stirling-pdf-desktop
     freeplane
     #nputs.nixpkgs-unstable.dia
@@ -117,6 +119,7 @@
     devede
     cheese
     kooha
+    picard
   ];
 
   # System utilities and file management

@@ -135,9 +135,11 @@ in
         flatpak install -7 io.github.subhra74.Muon
       '';
     };
+    /*
     coredump.settings.Coredump = ''
       ProcessSizeMax = 0
       ExternalSizeMax = 0
     '';
+  */
   };
 }
