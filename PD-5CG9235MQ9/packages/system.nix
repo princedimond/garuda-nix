@@ -20,6 +20,7 @@
     rpi-imager
     czkawka-full
     dmidecode
+    taxi
   ];
 
   # Development tools
@@ -37,6 +38,9 @@
     nh
     onefetch
     github-copilot-cli
+    direnv
+    nix-direnv
+    vscode-extensions.mkhl.direnv
     inputs.nixvim.packages.x86_64-linux.default
   ];
 

@@ -19,6 +19,7 @@ in
       packages = [
         #"com.microsoft.Edge"
         "com.mikrotik.WinBox"
+        "com.orcaslicer.OrcaSlicer"
         "io.github.subhra74.Muon"
       ];
     };
@@ -63,7 +64,7 @@ in
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       #flatpak install -y microsoft-edge
       flatpak install -y  WinBox
-      flatpak install -y  WinBox
+      flatpak install -y  com.orcaslicer.OrcaSlicer
     '';
   };
 }

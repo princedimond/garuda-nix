@@ -85,8 +85,16 @@ in
     };
   };
 
-  programs.neovim.viAlias = true;
-  programs.neovim.vimAlias = true;
+  programs = {
+    neovim.viAlias = true;
+    neovim.vimAlias = true;
+    bash.enable = true;
+  };
+  programs.vscode.enable = true;
+
+  programs.fish.interactiveShellInit = ''
+    direnv hook fish | source
+  '';
 
   # Set your time zone.
   time.timeZone = vars.timeZone;
@@ -100,6 +108,7 @@ in
   users.users.${vars.userName} = {
     isNormalUser = true;
     description = vars.userName;
+    shell = pkgs.bash;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -123,6 +132,7 @@ in
     permittedInsecurePackages = [
       "libsoup-2.74.3"
       "electron-35.7.5"
+      "electron-39.8.10"
     ];
   };
 
