@@ -6,6 +6,13 @@
 }:
 
 {
+
+  imports = [
+    #./plasma.nix
+    ./evil-helix.nix
+    ./japanese.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #home.userName = vars.userName;
@@ -90,8 +97,19 @@
       };
     };
   */
+   # Git Options
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+    settings = {
+      user.name = "princedimond";
+      user.email = "princedimond@gmail.com";
+      credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
+    };
+  };
+
   home.sessionVariables = {
-    # EDITOR = "emacs";
+     EDITOR = "hx";
   };
 
   # Let Home Manager install and manage itself.

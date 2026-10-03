@@ -54,6 +54,7 @@
     # autoconf
     # automake
     # libtool
+    android-tools
   ];
 
   # Database tools

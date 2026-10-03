@@ -1,0 +1,127 @@
+# MeshCentral Agent NixOS Module
+#
+# Usage — add to your configuration.nix:
+#
+#   imports = [ ./mesh-central.nix ];
+#   meshCentral.enable = true;
+#   meshCentral.server = "https://10.10.1.69";
+#   meshCentral.token = "q4FvBxu4g7a$FiEgzjamQOLMrgc2uCcVPClr1vRtPXybgel2JSdNUSaQuTcfuuyA";
+#
+#   # Run once on first boot (default: true). Set to false to re-run every boot.
+#   # meshCentral.runOnce = true;
+#
+
+{ config, lib, pkgs, ... }:
+
+with lib;
+
+let
+  cfg = config.meshCentral;
+in
+
+{
+  options.meshCentral = {
+    enable = mkEnableOption "MeshCentral agent installation and management";
+
+    server = mkOption {
+      type = types.str;
+      description = "MeshCentral server URL (e.g. https://10.10.1.69)";
+      example = "https://10.10.1.69";
+    };
+
+    token = mkOption {
+      type = types.str;
+      description = "MeshCentral agent token for authentication";
+      example = "ov5MX6g$XFzwWO4zG8ltS37C1nUtQZg2wXGRB8nR2n4cSwDjIGKOqEHcNQw3D4kH";
+      secret = true;
+    };
+
+    extraArgs = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = "Additional arguments to pass to the MeshCentral installer script";
+      example = [ "--noservices" ];
+    };
+
+    noProxy = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Pass --no-proxy flag when downloading the installer script";
+    };
+
+    disableCertificateCheck = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Pass --no-check-certificate flag when downloading the installer script";
+    };
+
+    runOnce = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Install only on the first boot after a clean deploy.
+        A marker file in /var/lib/mesh-central-installer is used
+        to track whether the installer has already run.
+        Set to false to re-run the installer on every boot.
+      '';
+    };
+  };
+
+  config = mkIf cfg.enable {
+    # This service downloads the MeshCentral installer from the server
+    # and runs it. When runOnce=true (default), a marker file ensures
+    # it only executes on the first boot after a clean deploy.
+    systemd.services.mesh-central-installer = {
+      description = "MeshCentral Agent Installer";
+
+      wantedBy = [ "multi-user.target" "graphical.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+
+        # Single script that handles: run-once check, download, install, cleanup
+        ExecStart = ''
+          ${pkgs.bash}/bin/bash -c '
+            ${if cfg.runOnce then "RUN_ONCE=true" else "RUN_ONCE=false"}
+
+            # Run-once: skip if marker file exists
+            if [ "$RUN_ONCE" = "true" ] && [ -f /var/lib/mesh-central-installer/.installed ]; then
+              echo "[mesh-central] already installed, skipping"
+              exit 0
+            fi
+
+            echo "[mesh-central] downloading installer..."
+            ${pkgs.curl}/bin/curl \
+              ${if cfg.disableCertificateCheck then "-k" else ""} \
+              ${if cfg.noProxy then "--no-proxy" else ""} \
+              -f \
+              -o /tmp/meshinstall.sh \
+              "${cfg.server}/meshagents?script=1"
+
+            echo "[mesh-central] running installer..."
+            chmod +x /tmp/meshinstall.sh
+            /tmp/meshinstall.sh \
+              ${cfg.server} \
+              ${shellEscape cfg.token} \
+              ${concatStringsSep " " (map shellEscape cfg.extraArgs)}
+
+            ${if cfg.runOnce then ''
+              mkdir -p /var/lib/mesh-central-installer
+              touch /var/lib/mesh-central-installer/.installed
+              echo "[mesh-central] installed successfully, marker created"
+            '' else ''
+              echo "[mesh-central] installed successfully"
+            ''}
+
+            rm -f /tmp/meshinstall.sh
+          '
+        '';
+      };
+
+      path = [ pkgs.curl pkgs.bash ];
+    };
+  };
+}

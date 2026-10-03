@@ -42,6 +42,19 @@ in
   networking.networkmanager.enable = true;
   networking.wireguard.enable = true;
 
+  # Other Environment Configs
+  environment.shellAliases = {
+    fr = "nh os switch --hostname $hostname path:$HOME/garuda-nix/$hostname";
+    fb = "nh os boot --hostname $hostname path:$HOME/garuda-nix/$hostname";
+    fu = "nh os switch --hostname $hostname path:$HOME/garuda-nix/$hostname --update";
+    fbu = "nh os boot --hostname $hostname path:$HOME/garuda-nix/$hostname --update";
+    v = "nvim";
+  };
+
+  environment.variables = {
+    EDITOR = pkgs.lib.mkForce "hx";
+  };
+
   # Enable Flakes
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -71,9 +84,40 @@ in
     # desktops.enable = true;
     # performance = true;
     performance-tweaks = {
-      cachyos-kernel = true;
+      #cachyos-kernel = true;
       enable = true;
     };
+  };
+
+  # Install Niri
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+  };
+
+  /*
+    # Niri Overlay (only needed if there's an issue with the flake package)
+    nixpkgs.overlays = [
+      (final: prev: {
+        niri-patched = prev.niri.overrideAttrs (old: {
+          patches = (old.patches or []) ++ [
+            (prev.writeText "remove-libdisplay-info-assert.patch" ''
+              --- a/flake.nix
+              +++ b/flake.nix
+              @@ -300,7 +300,7 @@
+              # Old assert:
+              - assert libdisplay-info_0_2.vers == "0.2.0";
+              + # assert removed because libdisplay-info_0_2 no longer exists
+            '')
+          ];
+        });
+      })
+    ];
+  */
+
+  # Enable Noctalia Shell
+  programs.noctalia = {
+    enable = true;
   };
 
   programs.neovim.viAlias = true;
@@ -115,6 +159,7 @@ in
     permittedInsecurePackages = [
       "libsoup-2.74.3"
       "electron-35.7.5"
+      "electron-39.8.10"
     ];
   };
 
@@ -146,6 +191,26 @@ in
 
   # Note: Wine packages are handled separately in users.users.princedimond.packages
 
+   xdg.portal = {
+    enable = true;
+    config = {
+      common = {
+        default = [
+          #"cosmic"
+          "gtk"
+        ];
+        # Use wlr for RemoteDesktop and ScreenCast
+        #"org.freedesktop.impl.portal.RemoteDesktop" = "wlr";
+        #"org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      };
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      #pkgs.xdg-desktop-portal-cosmic
+      #pkgs.xdg-desktop-portal-wlr
+    ];
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -162,13 +227,19 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  /*
   # Home Manager configuration
   home-manager = {
     useGlobalPkgs = true;
-    useUserPackages = false;
-    users.${vars.userName} = import ./home.nix;
+    useUserPackages = true;
+    users.${vars.userName} = {
+      imports = [
+        ./home.nix
+      ];
+    };
     extraSpecialArgs = { inherit vars; };
   };
+  */
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

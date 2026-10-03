@@ -135,7 +135,7 @@ in
         flatpak install -7 io.github.subhra74.Muon
       '';
     };
-    coredump.extraConfig = ''
+    coredump.settings.Coredump = ''
       ProcessSizeMax = 0
       ExternalSizeMax = 0
     '';

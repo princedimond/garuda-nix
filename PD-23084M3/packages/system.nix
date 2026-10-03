@@ -10,11 +10,17 @@
     direnv
     fastfetch
     btop
+    bottom
     htop
-    glances
+    #glances
     mission-center
     apacheHttpd
     rar
+    yazi
+    xwayland-satellite
+    quickshell
+    owofetch
+    freshfetch
   ];
 
   # Development tools
@@ -27,10 +33,12 @@
     meld
     nixd
     nil
-    helix-gpt
+    #helix-gpt
     evil-helix
     nh
     onefetch
+    gh
+    lazygit
     inputs.nixvim.packages.x86_64-linux.default
   ];
 
@@ -42,18 +50,21 @@
     onlyoffice-desktopeditors
     affine
     anytype
-    logseq
+    anytype-heart
+    #logseq
     evolution
+    stirling-pdf-desktop
   ];
 
   # VPN and networking
   networking = with pkgs; [
-    #protonvpn-gui
+    proton-vpn
     expressvpn
     tailscale
     remmina
     wireguard-ui
     wireguard-tools
+    winbox4
   ];
 
   # Media and graphics
@@ -69,7 +80,7 @@
   # System utilities and file management
   utilities = with pkgs; [
     bitwarden-desktop
-    xfce.thunar
+    thunar
     gnome-disk-utility
     system-config-printer
     flatpak
@@ -101,8 +112,8 @@
   # Browsers (from inputs)
   browsers = [
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.zen-browser.packages.x86_64-linux.specific
-    inputs.zen-browser.packages.x86_64-linux.generic
+    #inputs.zen-browser.packages.x86_64-linux.specific
+    #inputs.zen-browser.packages.x86_64-linux.generic
   ];
 
   # Additional tools with duplicates removed

@@ -19,7 +19,7 @@
     microfetch
     btop
     htop
-    glances
+    #glances
     nvtopPackages.nvidia
     mission-center
     resources
@@ -64,26 +64,28 @@
     #element-desktop
     thunderbird
     onlyoffice-desktopeditors
-    kdePackages.calligra
+    #kdePackages.calligra
     libreoffice-qt-fresh
     stirling-pdf-desktop
     freeplane
-    dia
+    #nputs.nixpkgs-unstable.dia
     yed
     affine
     anytype
-    logseq
+    siyuan
+    #logseq
     joplin-desktop
     kdePackages.marknote
     notesnook
     kdePackages.konversation
+    quasselClient
     zoom-us
     hubstaff
   ];
 
   # VPN and networking
   networking = with pkgs; [
-    #protonvpn-gui
+    proton-vpn
     microsoft-edge
     expressvpn
     tailscale
@@ -93,6 +95,8 @@
     deluge
     winbox4
     waynergy
+    gns3-gui
+    gns3-server
   ];
 
   # Media and graphics
@@ -178,7 +182,7 @@
   # Additional tools with duplicates removed
   extras = with pkgs; [
     thunderbolt
-    open-webui
+    #open-webui
     lmstudio
     solaar
   ];

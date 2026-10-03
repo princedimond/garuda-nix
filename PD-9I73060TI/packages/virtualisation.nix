@@ -12,7 +12,7 @@
     };
     spiceUSBRedirection.enable = true;
     docker.enable = false;
-    podman.enable = true;
+    podman.enable = false;
   };
   programs = {
     virt-manager.enable = true;
